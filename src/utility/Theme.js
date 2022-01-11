@@ -1,6 +1,6 @@
 // dark and light themes vars
 
-export const lightTheme = {
+export const LightTheme = {
   body: '#FCF6F4',
   text: '#000000',
   fontFamily: "'Source Sans Pro', sans-serif",
