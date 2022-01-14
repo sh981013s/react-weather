@@ -2,9 +2,8 @@ import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { useTheme } from '../../../hooks/useTheme';
 import ThemeSelector from './ThemeSelector';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Logo from '../../../assets/images/logo2.png';
+import { Icon } from '@iconify/react';
 
 const Box = styled.nav`
   width: 100%;
@@ -54,7 +53,7 @@ const Navbar = () => {
   return (
     <Box theme={theme}>
       <LeftSection>
-        <FontAwesomeIcon icon={faBars} size="2x" />
+        <Icon icon="icon-park:hamburger-button" width="30" height="30" />
         <img src={Logo} alt="logo" />
         <NavName>House' The Weather?</NavName>
       </LeftSection>
