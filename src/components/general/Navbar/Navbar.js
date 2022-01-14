@@ -8,6 +8,9 @@ import { Icon } from '@iconify/react';
 import Sidebar from '../Sidebar/Sidebar';
 
 const NavbarStyled = styled.nav`
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr 0.25fr;
