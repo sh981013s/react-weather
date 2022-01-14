@@ -1,27 +1,23 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { useState, useEffect } from 'react';
 import { useTheme } from '../../../hooks/useTheme';
 import { LightTheme, DarkTheme } from '../../../utility/Theme';
+import DarkModeToggle from 'react-dark-mode-toggle';
 
-const ThemeSelectorStyled = styled.div`
-  width: 10px;
-  height: 10px;
-  background: green;
-`;
+const ThemeSelector = (props) => {
+  const { changeTheme } = useTheme();
+  const [isDarkMode, setIsDarkMode] = useState(() => false);
 
-const ThemeSelector = () => {
-  const { theme, changeTheme } = useTheme();
-
-  const themeHandler = () => {
-    console.log(theme.themeName);
-    if (theme.themeName === 'lightTheme') {
+  useEffect(() => {
+    if (isDarkMode) {
       changeTheme({ ...DarkTheme });
     } else {
       changeTheme({ ...LightTheme });
     }
-  };
+  }, [changeTheme, isDarkMode]);
 
-  return <ThemeSelectorStyled onClick={themeHandler} />;
+  return (
+    <DarkModeToggle size={70} onChange={setIsDarkMode} checked={isDarkMode} />
+  );
 };
 
 export default ThemeSelector;
