@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { ThemeProvider } from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import Navbar from './components/general/Navbar/Navbar';
 import { Home } from './pages/index';
 import GlobalStyle from './globalStyles';
@@ -10,16 +10,23 @@ import { useTheme } from './hooks/useTheme';
 const App = () => {
   const { theme } = useTheme();
 
+  const Box = styled.div`
+    width: 100%;
+    min-height: 100vh;
+  `;
+
   return (
-    <Fragment>
+    <>
       <GlobalStyle />
-      <ThemeProvider theme={theme === 'light' ? LightTheme : DarkTheme}>
-        <Navbar />
+      <ThemeProvider
+        theme={theme.themeName === 'lightTheme' ? LightTheme : DarkTheme}
+      >
         <Router>
+          <Navbar />
           <Route exact path="/" component={Home} />
         </Router>
       </ThemeProvider>
-    </Fragment>
+    </>
   );
 };
 

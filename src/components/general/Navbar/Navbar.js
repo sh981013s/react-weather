@@ -1,11 +1,13 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { useTheme } from '../../../hooks/useTheme';
 import ThemeSelector from './ThemeSelector';
 import Logo from '../../../assets/images/logo2.png';
 import { Icon } from '@iconify/react';
+import Sidebar from '../Sidebar/Sidebar';
 
-const Box = styled.nav`
+const NavbarStyled = styled.nav`
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr 0.25fr;
@@ -26,6 +28,9 @@ const Box = styled.nav`
     width: 3rem;
     overflow: hidden;
     margin: 0 0 20px 20px;
+    &:hover {
+      cursor: pointer;
+    }
   }
 `;
 
@@ -47,19 +52,39 @@ const DateText = styled.h3`
   align-items: center;
 `;
 
-const Navbar = () => {
+const HamburgerIcon = styled(Icon)`
+  color: ${(props) => props.theme.text};
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+const Navbar = (props) => {
   const { theme } = useTheme();
+  const [sidebar, setSidebar] = useState(false);
+
+  const sidebarHandler = () => setSidebar(!sidebar);
 
   return (
-    <Box theme={theme}>
-      <LeftSection>
-        <Icon icon="icon-park:hamburger-button" width="30" height="30" />
-        <img src={Logo} alt="logo" />
-        <NavName>House' The Weather?</NavName>
-      </LeftSection>
-      <DateText>Today</DateText>
-      <ThemeSelector />
-    </Box>
+    <>
+      <NavbarStyled>
+        <LeftSection>
+          <HamburgerIcon
+            icon="radix-icons:hamburger-menu"
+            width="30"
+            height="30"
+            onClick={sidebarHandler}
+          />
+          <Link to="/">
+            <img src={Logo} alt="logo" />
+          </Link>
+          <NavName>House' The Weather?</NavName>
+        </LeftSection>
+        <DateText>Today</DateText>
+        <ThemeSelector />
+      </NavbarStyled>
+      <Sidebar sidebar={sidebar} setSidebar={setSidebar} />
+    </>
   );
 };
 
