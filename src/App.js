@@ -2,7 +2,7 @@ import React, { Fragment, useState } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import styled, { ThemeProvider } from 'styled-components';
 import Navbar from './components/general/Navbar/Navbar';
-import { Home } from './pages/index';
+import { Home, Login } from './pages/index';
 import GlobalStyle from './globalStyles';
 import { LightTheme, DarkTheme } from './utility/Theme';
 import { useTheme } from './hooks/useTheme';
@@ -21,6 +21,7 @@ const App = () => {
         <Router>
           <Navbar />
           <Route exact path="/" component={Home} />
+          <Route exact path="/login" component={Login} />
         </Router>
       </ThemeProvider>
     </>

@@ -1,8 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
 
+const Box = styled.div`
+  width: 100%;
+  height: 92.7vh;
+  margin-top: 7.3vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: ${(props) => props.theme.background};
+`;
+
 const Card = styled.div`
-  position: relative;
+  padding-left: 8vh;
   display: flex;
   background-color: #fff;
   border-radius: 10px;
@@ -12,15 +22,10 @@ const Card = styled.div`
 `;
 
 const LoginContent = styled.main`
-  -webkit-box-flex: 2;
   flex: 2 2;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
   flex-flow: column;
-  -webkit-box-pack: center;
   justify-content: center;
-  -webkit-box-align: center;
   align-items: center;
   min-height: 100%;
 `;
@@ -30,17 +35,14 @@ const Header = styled.span`
   display: block;
   margin-bottom: 2rem;
   color: #0c1066;
-  letter-spacing: .2rem;
+  letter-spacing: 0.2rem;
   font-weight: 700;
 `;
 
 const Form = styled.form`
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
   flex-flow: column;
   width: 80%;
-  -webkit-box-align: center;
   align-items: center;
 `;
 
@@ -87,16 +89,11 @@ const NonmemberLink = styled.a`
 `;
 
 const Aside = styled.aside`
-  -webkit-animation: 2.25s ease-in-out fadein;
   animation: 2.25s ease-in-out fadein;
-  -webkit-box-flex: 3;
   flex: 3 3;
   display: -webkit-box;
   display: flex;
-  -webkit-box-pack: end;
   justify-content: flex-end;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
   flex-flow: column;
   min-height: 100%;
   border-radius: 0 10px 10px 0;
@@ -116,24 +113,30 @@ const AsideOverlay = styled.div`
 `;
 
 const Login = () => {
-  return (<Card>
-    <LoginContent>
-    <Header>Login</Header>
-    <Form>
-      <LoginInput name="email" placeholder="Email"></LoginInput>
-      <LoginInput name="password" placeholder="Password"></LoginInput>
-      <LoginBtn name="submit" type="submit" value="Login"></LoginBtn>
-    </Form>
-    <SignupWrapper>
-      Don't have an account?
-      <SignupLink router-link="/signup" href="/signup">Sign up</SignupLink>
-    </SignupWrapper>
-    <NonmemberLink>비회원으로 로그인</NonmemberLink>
-    </LoginContent>
-    <Aside>
-      <AsideOverlay />
-    </Aside>
-  </Card>);
-}
+  return (
+    <Box>
+      <Card>
+        <LoginContent>
+          <Header>Login</Header>
+          <Form>
+            <LoginInput name="email" placeholder="Email"></LoginInput>
+            <LoginInput name="password" placeholder="Password"></LoginInput>
+            <LoginBtn name="submit" type="submit" value="Login"></LoginBtn>
+          </Form>
+          <SignupWrapper>
+            Don't have an account?
+            <SignupLink router-link="/signup" href="/signup">
+              Sign up
+            </SignupLink>
+          </SignupWrapper>
+          <NonmemberLink>비회원으로 로그인</NonmemberLink>
+        </LoginContent>
+        <Aside>
+          <AsideOverlay />
+        </Aside>
+      </Card>
+    </Box>
+  );
+};
 
 export default Login;

@@ -19,7 +19,7 @@ const NavbarStyled = styled.nav`
   align-self: center;
 
   box-shadow: 0 0 2rem rgba(0, 0, 255, 0.1);
-  height: 4rem;
+  height: 7.3vh;
   transition: background-color 500ms linear;
   animation: 1s ease-in-out 0ms 1 fade-in;
   background: ${(props) => props.theme.navbar};
