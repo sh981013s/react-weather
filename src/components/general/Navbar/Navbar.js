@@ -24,7 +24,7 @@ const NavbarStyled = styled.nav`
   animation: 1s ease-in-out 0ms 1 fade-in;
   background: ${(props) => props.theme.navbar};
   color: ${(props) => props.theme.text};
-  padding: 0 1.5rem;
+  /* padding: 0 1.5rem; */
 
   img {
     display: inline-block;
@@ -42,6 +42,7 @@ const LeftSection = styled.div`
   grid-template-rows: 1fr;
   grid-template-columns: 1fr 1fr;
   max-width: 5rem; */
+  padding-left: 1.5rem;
   display: flex;
   align-items: center;
 `;
