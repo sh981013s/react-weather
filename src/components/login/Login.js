@@ -72,9 +72,6 @@ const SignupWrapper = styled.div`
   margin-top: 3rem;
 `;
 
-const SignupNotice = styled.span`
-`;
-
 const SignupLink = styled.a`
   text-transform: uppercase;
   margin-top: 1rem;
@@ -128,7 +125,7 @@ const Login = () => {
       <LoginBtn name="submit" type="submit" value="Login"></LoginBtn>
     </Form>
     <SignupWrapper>
-      <SignupNotice>Don't have an account?</SignupNotice>
+      Don't have an account?
       <SignupLink router-link="/signup" href="/signup">Sign up</SignupLink>
     </SignupWrapper>
     <NonmemberLink>비회원으로 로그인</NonmemberLink>
