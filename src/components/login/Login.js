@@ -116,7 +116,7 @@ const AsideOverlay = styled.div`
 `;
 
 const Login = () => {
-  return <Card>
+  return (<Card>
     <LoginContent>
     <Header>Login</Header>
     <Form>
@@ -133,7 +133,7 @@ const Login = () => {
     <Aside>
       <AsideOverlay />
     </Aside>
-  </Card>
+  </Card>);
 }
 
 export default Login;
