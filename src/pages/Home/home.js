@@ -1,6 +1,10 @@
+import axios from 'axios';
 import React, { useRef, useEffect } from 'react';
 import styled from 'styled-components';
-import Card from '../../components/home/Card';
+import WeatherCard from '../../components/home/WeatherCard';
+import AddCard from '../../components/home/AddCard';
+import useFetch from '../../hooks/useFetch';
+import useWeather from '../../hooks/useWeather';
 
 const Box = styled.div`
   padding-top: 15vh;
@@ -19,6 +23,8 @@ const Main = styled.ul`
 
 const Home = () => {
   const ref = useRef(null);
+  const { lodaing, data, error } = useWeather('seoul');
+  console.log(data);
 
   useEffect(() => {
     const element = ref.current;
@@ -36,12 +42,8 @@ const Home = () => {
   return (
     <Box>
       <Main ref={ref}>
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+        <WeatherCard />
+        <AddCard />
       </Main>
     </Box>
   );

@@ -1,0 +1,24 @@
+<svg class="add__icon" viewBox="0 0 209.1 209.1">
+  <defs>
+    <linearGradient gradientUnits="objectBoundingBox" id="b" x1=".5" x2=".5" y2="1">
+      <stop offset="0" stop-color="#f41878"/>
+      <stop offset="1" stop-color="#0e008b"/>
+    </linearGradient>
+    <linearGradient gradientUnits="objectBoundingBox" id="c" x1=".5" x2=".5" y2="1">
+      <stop offset="0" stop-color="#f41878"/>
+      <stop offset="1" stop-color="#18058c"/>
+    </linearGradient>
+    <filter filterUnits="userSpaceOnUse" height="209.1" id="a" width="209.1" x="0" y="0">
+      <feOffset dy="3"/>
+      <feGaussianBlur result="blur" stdDeviation="3"/>
+      <feFlood flood-color="#333" flood-opacity=".1"/>
+      <feComposite in2="blur" operator="in"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g data-name="Plus Icon" transform="translate(-1454.4 -326.4)">
+    <circle cx="95.6" cy="95.6" data-name="Ellipse 7" fill="#39518a" filter="url(#a)" r="95.6" transform="translate(1463.4 332.4)"/>
+    <rect data-name="Rectangle 3" fill="url(#b)" height="142.9" rx="5" transform="translate(1552.6 358.1)" width="12.8"/>
+    <rect data-name="Rectangle 4" fill="url(#c)" height="142.9" rx="5" transform="rotate(90 603.6 1026.8)" width="12.8"/>
+  </g>
+</svg>
