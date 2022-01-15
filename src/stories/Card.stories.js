@@ -1,5 +1,5 @@
 import React from 'react';
-import Card from '../components/home/Card';
+import Card from '../components/home/AddCard';
 
 export default {
   title: 'HomeCard',
