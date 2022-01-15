@@ -23,7 +23,7 @@ const SidebarStyled = styled.div`
   display: flex;
   flex-wrap: wrap;
   /* justify-content: center; */
-  /* position: fixed; */
+  position: fixed;
   top: 0;
   left: ${(props) => (props.sidebar ? '0%' : '-100%')};
   opacity: 1;
