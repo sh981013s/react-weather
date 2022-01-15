@@ -15,7 +15,7 @@ const Box = styled.div`
 `;
 
 const SidebarStyled = styled.div`
-  background: ${(props) => props.theme.body};
+  background: ${(props) => props.theme.sidebar};
   width: 250px;
   height: 100vh;
   padding: 0rem;
@@ -27,6 +27,7 @@ const SidebarStyled = styled.div`
   opacity: 1;
   transition: 500ms;
   z-index: 10;
+  clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
 `;
 
 const NavIcon = styled.div`
@@ -37,6 +38,10 @@ const NavIcon = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
+`;
+
+const CloseIcon = styled(Icon)`
+  color: ${(props) => props.theme.text};
 `;
 
 const Sidebar = ({ sidebar, setSidebar }) => {
@@ -51,7 +56,7 @@ const Sidebar = ({ sidebar, setSidebar }) => {
     <Box>
       <SidebarStyled ref={ref} sidebar={sidebar}>
         <NavIcon>
-          <Icon onClick={sidebarHandler} icon="ep:close-bold" />
+          <CloseIcon onClick={sidebarHandler} icon="ep:close-bold" />
         </NavIcon>
       </SidebarStyled>
     </Box>

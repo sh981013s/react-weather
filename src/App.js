@@ -6,14 +6,10 @@ import { Home } from './pages/index';
 import GlobalStyle from './globalStyles';
 import { LightTheme, DarkTheme } from './utility/Theme';
 import { useTheme } from './hooks/useTheme';
+import Loader from './components/general/Loader';
 
 const App = () => {
   const { theme } = useTheme();
-
-  const Box = styled.div`
-    width: 100%;
-    min-height: 100vh;
-  `;
 
   return (
     <>
@@ -21,6 +17,7 @@ const App = () => {
       <ThemeProvider
         theme={theme.themeName === 'lightTheme' ? LightTheme : DarkTheme}
       >
+        {/* <Loader /> */}
         <Router>
           <Navbar />
           <Route exact path="/" component={Home} />

@@ -22,7 +22,7 @@ const NavbarStyled = styled.nav`
   height: 4rem;
   transition: background-color 500ms linear;
   animation: 1s ease-in-out 0ms 1 fade-in;
-  background: ${(props) => props.theme.body};
+  background: ${(props) => props.theme.navbar};
   color: ${(props) => props.theme.text};
   padding: 0 1.5rem;
 

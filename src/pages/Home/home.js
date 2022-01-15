@@ -6,15 +6,15 @@ const Box = styled.div`
   padding-top: 15vh;
   height: 400vh;
   display: flex;
-  background: blue;
+  background: ${(props) => props.theme.background};
+  transition: background-color 500ms linear;
 `;
 
 const Main = styled.ul`
   position: fixed;
   top: 12rem;
-  left: calc(1rem + 3vw);
+  left: calc(1rem + 13vw);
   display: flex;
-  background: red;
 `;
 
 const Home = () => {

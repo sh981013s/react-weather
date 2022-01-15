@@ -7,6 +7,15 @@ export const LightTheme = {
   fontFamily: "'Source Sans Pro', sans-serif",
   bodyRgba: '252, 246, 244',
   textRgba: '0,0,0',
+  background: `linear-gradient(
+    90deg,
+    rgba(94, 231, 223, 1) 35%,
+    rgba(102, 166, 255, 1) 100%
+  )`,
+  transition: `background-color 500ms linear`,
+  sidebar: '#64b784',
+  navbar: '#FFFFFF',
+  card: '#FFFFFF',
 };
 
 export const DarkTheme = {
@@ -16,6 +25,11 @@ export const DarkTheme = {
   fontFamily: "'Source Sans Pro', sans-serif",
   bodyRgba: '252, 246, 244',
   textRgba: '0,0,0',
+  background: `linear-gradient(90deg, rgba(55,40,101,1) 35%, rgba(0,0,0,1) 100%)`,
+  transition: `background-color 500ms linear`,
+  sidebar: '#A188A6',
+  navbar: '#282043',
+  card: '#020122',
 };
 
 export const breakpoints = {
