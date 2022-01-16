@@ -8,7 +8,7 @@ const useFetch = (city) => {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
 
-  const query = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${WEATHER_KEY}&lang=kr`;
+  const query = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${WEATHER_KEY}`;
   //   const tmp = `https://api.openweathermap.org/data/2.5/onecall?lat=37.5683&lon=126.9778&exclude=minutely,alerts&appid=c26763eb2ad8e5593d29d4670ddb3236`;
 
   useEffect(() => {

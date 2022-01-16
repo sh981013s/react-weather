@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { ReactComponent as BackBtn } from '../../assets/svgs/backBtn.svg';
-import { useTheme } from '../../hooks/useTheme';
 import WeatherDetailFunc from '../../hooks/useWeatherDetail';
 import WeatherIconFunc from '../../hooks/weatherDetailIcon';
+import unixConverter from '../../utility/unixConverter';
 
 const Box = styled.div`
   position: relative;
@@ -79,22 +79,42 @@ const PictureContainer = styled.div`
   width: 20vw;
   height: 20vh;
   padding: 2em;
-  /* background: ${(props) => props.theme.card}; */
-  border-radius: 3rem;
+`;
+
+const DetailBottom = styled.div`
+  width: 100%;
+  height: 50%;
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: repeat(5, 1fr);
+  color: ${(props) => props.theme.text};
+  border-radius: 3rem 3rem 0 0;
+`;
+
+const SmallPictureContainer = styled.div`
+  width: 20%;
+  height: 20%;
+  img {
+    width: 100%;
+    height: 100%;
+  }
 `;
 
 const WeatherDetail = ({ match }) => {
-  const { theme } = useTheme();
   const { name, lat, long } = match.params;
   const { data } = WeatherDetailFunc(lat, long);
   const [img, setImg] = useState([]);
+  const [dailyData, setDailyData] = useState([]);
 
   useEffect(() => {
     if (data) {
       const img = WeatherIconFunc(data.current.weather[0].main);
       setImg(img);
+      setDailyData(data.daily.slice(1, 6));
     }
   }, [data]);
+
+  console.log(data);
 
   return (
     <Box>
@@ -114,11 +134,31 @@ const WeatherDetail = ({ match }) => {
           </DetailLeft>
           <DetailLeft>
             <div>
-              <span>{data && Math.round(data.current.temp - 273)}°</span>
-              <span>{data && data.current.weather[0].description}</span>
+              <span>기온 : {data && Math.round(data.current.temp - 273)}°</span>
+              <span>
+                날씨 상태 : {data && data.current.weather[0].description}
+              </span>
+              <span>습도 : {data && data.current.humidity}%</span>
+              <span>풍속 : {data && data.current.wind_speed}m/sec</span>
             </div>
           </DetailLeft>
         </DetailMain>
+        <DetailBottom>
+          {dailyData &&
+            dailyData.map((day) => {
+              return (
+                <div>
+                  <p>{unixConverter(day.dt)}</p>
+                  <SmallPictureContainer>
+                    {data && (
+                      <img src={WeatherIconFunc(day.weather[0].main)} alt="" />
+                    )}
+                  </SmallPictureContainer>
+                  <p>{Math.round(day.temp.day - 273)}°</p>
+                </div>
+              );
+            })}
+        </DetailBottom>
       </DetailCard>
     </Box>
   );
