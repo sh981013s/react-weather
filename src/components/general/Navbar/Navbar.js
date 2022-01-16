@@ -8,9 +8,7 @@ import { Icon } from '@iconify/react';
 import Sidebar from '../Sidebar/Sidebar';
 
 const NavbarStyled = styled.nav`
-  position: fixed;
-  top: 0;
-  left: 0;
+  position: absolute;
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr 0.25fr;
@@ -24,7 +22,7 @@ const NavbarStyled = styled.nav`
   animation: 1s ease-in-out 0ms 1 fade-in;
   background: ${(props) => props.theme.navbar};
   color: ${(props) => props.theme.text};
-  /* padding: 0 1.5rem; */
+  z-index: 88;
 
   img {
     display: inline-block;

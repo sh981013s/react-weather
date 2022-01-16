@@ -5,7 +5,7 @@ import DarkModeToggle from 'react-dark-mode-toggle';
 
 const ThemeSelector = (props) => {
   const { changeTheme } = useTheme();
-  const [isDarkMode, setIsDarkMode] = useState(() => false);
+  const [isDarkMode, setIsDarkMode] = useState(() => true);
 
   useEffect(() => {
     if (isDarkMode) {
