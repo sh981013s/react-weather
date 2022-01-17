@@ -5,7 +5,7 @@ import WeatherDetailFunc from '../../hooks/useWeatherDetail';
 import WeatherIconFunc from '../../hooks/weatherDetailIcon';
 import unixConverter from '../../utility/unixConverter';
 
-const Box = styled.div`
+export const Box = styled.div`
   position: relative;
   width: 100%;
   min-height: 100vh;
@@ -38,7 +38,7 @@ const BackBtnStyled = styled.div`
   margin-top: 2rem;
 `;
 
-const DetailCard = styled.section`
+export const DetailCard = styled.section`
   width: 90%;
   height: 80vh;
   position: absolute;

@@ -62,7 +62,9 @@ const Home = () => {
             <WeatherCard data={data} />
           </StyledLink>
         )}
-        <AddCard />
+        <StyledLink to="/addcity">
+          <AddCard />
+        </StyledLink>
       </Main>
     </Box>
   );

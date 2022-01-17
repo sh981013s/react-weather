@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import styled, { ThemeProvider } from 'styled-components';
 import Navbar from './components/general/Navbar/Navbar';
-import { Home, Login, WeatherDetail } from './pages/index';
+import { Home, Login, WeatherDetail, AddCity } from './pages/index';
 import GlobalStyle from './globalStyles';
 import { LightTheme, DarkTheme } from './utility/Theme';
 import { useTheme } from './hooks/useTheme';
@@ -43,6 +43,7 @@ const App = () => {
           <ContentBox>
             <Route exact path="/" component={Home} />
             <Route exact path="/login" component={Login} />
+            <Route exact path="/addcity" component={AddCity} />
             <Route path="/city/:name/:lat/:long" component={WeatherDetail} />
           </ContentBox>
         </Router>
