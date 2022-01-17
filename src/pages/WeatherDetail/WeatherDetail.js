@@ -114,8 +114,6 @@ const WeatherDetail = ({ match }) => {
     }
   }, [data]);
 
-  console.log(data);
-
   return (
     <Box>
       <GradientCircle />
@@ -134,7 +132,7 @@ const WeatherDetail = ({ match }) => {
           </DetailLeft>
           <DetailLeft>
             <div>
-              <span>기온 : {data && Math.round(data.current.temp - 273)}°</span>
+              <span>기온 : {data && Math.round(data.current.temp)}°</span>
               <span>
                 날씨 상태 : {data && data.current.weather[0].description}
               </span>
@@ -147,14 +145,14 @@ const WeatherDetail = ({ match }) => {
           {dailyData &&
             dailyData.map((day) => {
               return (
-                <div>
+                <div key={day.dt}>
                   <p>{unixConverter(day.dt)}</p>
                   <SmallPictureContainer>
                     {data && (
                       <img src={WeatherIconFunc(day.weather[0].main)} alt="" />
                     )}
                   </SmallPictureContainer>
-                  <p>{Math.round(day.temp.day - 273)}°</p>
+                  <p>{Math.round(day.temp.day)}°</p>
                 </div>
               );
             })}

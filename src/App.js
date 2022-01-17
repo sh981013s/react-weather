@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import styled, { ThemeProvider } from 'styled-components';
 import Navbar from './components/general/Navbar/Navbar';
@@ -19,14 +19,16 @@ const ContentBox = styled.div`
 
 const App = () => {
   const { theme } = useTheme();
-  auth.onAuthStateChanged((user) => {
-    if (user !== null) {
-      console.log('logged in');
-      console.log(user);
-    } else {
-      console.log('no user');
-    }
-  });
+  useEffect(() => {
+    auth.onAuthStateChanged((user) => {
+      if (user !== null) {
+        console.log('logged in');
+        console.log(user);
+      } else {
+        console.log('no user');
+      }
+    });
+  }, []);
   return (
     <>
       <GlobalStyle />

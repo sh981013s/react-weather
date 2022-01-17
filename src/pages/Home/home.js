@@ -38,7 +38,6 @@ const StyledLink = styled(Link)`
 const Home = () => {
   const ref = useRef(null);
   const { lodaing, data, error } = useWeather('seoul');
-  console.log(data);
 
   useEffect(() => {
     const element = ref.current;

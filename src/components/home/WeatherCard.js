@@ -77,7 +77,7 @@ const WeatherCard = ({ data }) => {
         />
       </PlusBox>
       <WeatherInfoBox>
-        <CurrentTmp>{data && Math.round(data.main.temp) - 273}°</CurrentTmp>
+        <CurrentTmp>{data && Math.round(data.main.temp)}°</CurrentTmp>
         <WeatherStatus>{data && data.weather[0].description}</WeatherStatus>
       </WeatherInfoBox>
       <MinMaxContainer>
@@ -85,14 +85,14 @@ const WeatherCard = ({ data }) => {
           <ArrowContainer>
             <GreenArrow />
           </ArrowContainer>
-          <MinTemp>{data && Math.round(data.main.temp_min) - 273}°</MinTemp>
+          <MinTemp>{data && Math.round(data.main.temp_min)}°</MinTemp>
           <SingleMinText>Min</SingleMinText>
         </SingleContainer>
         <SingleContainer>
           <ArrowContainer>
             <RedArrow />
           </ArrowContainer>
-          <MinTemp>{data && Math.round(data.main.temp_max) - 273}°</MinTemp>
+          <MinTemp>{data && Math.round(data.main.temp_max)}°</MinTemp>
           <SingleMaxText>Max</SingleMaxText>
         </SingleContainer>
       </MinMaxContainer>

@@ -10,7 +10,7 @@ const WeatherDetailFunc = (lat, lon) => {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
 
-  const query = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,alerts,hourly&appid=${WEATHER_KEY}`;
+  const query = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,alerts,hourly&appid=${WEATHER_KEY}&units=metric`;
 
   useEffect(() => {
     axios
