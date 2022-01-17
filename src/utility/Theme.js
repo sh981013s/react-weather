@@ -16,6 +16,8 @@ export const LightTheme = {
   sidebar: '#64b784',
   navbar: '#FFFFFF',
   card: '#FFFFFF',
+  detailBackground: `linear-gradient(to top, #86dbff 0, #e0c3fc 100%)`,
+  circleBackground: `linear-gradient(to bottom,#ffd1ff,#ffe29f)`,
 };
 
 export const DarkTheme = {
@@ -30,6 +32,8 @@ export const DarkTheme = {
   sidebar: '#A188A6',
   navbar: '#282043',
   card: '#020122',
+  detailBackground: `linear-gradient(#fc7db8,#495cfc)`,
+  circleBackground: `linear-gradient(to bottom,#ff8b8b,#6676ff)`,
 };
 
 export const breakpoints = {

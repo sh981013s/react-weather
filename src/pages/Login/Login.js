@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+import { auth, signInWithGoogle } from '../../firebase/firebaseConfig';
 
 const Box = styled.div`
+  position: relative;
   width: 100%;
   height: 92.7vh;
   margin-top: 7.3vh;
@@ -12,13 +14,12 @@ const Box = styled.div`
 `;
 
 const Card = styled.div`
-  padding-left: 8vh;
   display: flex;
   background-color: #fff;
   border-radius: 10px;
-  box-shadow: 0 0 20px rgb(0 0 0 / 10%);
-  width: 85%;
+  width: 65%;
   min-height: 80vh;
+  box-shadow: 0 0 2rem rgb(0 0 255 / 60%);
 `;
 
 const LoginContent = styled.main`
@@ -28,6 +29,7 @@ const LoginContent = styled.main`
   justify-content: center;
   align-items: center;
   min-height: 100%;
+  padding: 0 1rem;
 `;
 
 const Header = styled.span`
@@ -113,6 +115,19 @@ const AsideOverlay = styled.div`
 `;
 
 const Login = () => {
+  // auth.onAuthStateChanged((user) => {
+  //   if (user !== null) {
+  //     console.log('logged in');
+  //     console.log(user);
+  //   } else {
+  //     console.log('no user');
+  //   }
+  // });
+
+  const googleLogout = () => {
+    auth.signOut();
+  };
+
   return (
     <Box>
       <Card>
@@ -130,6 +145,8 @@ const Login = () => {
             </SignupLink>
           </SignupWrapper>
           <NonmemberLink>비회원으로 로그인</NonmemberLink>
+          <NonmemberLink onClick={signInWithGoogle}>Google</NonmemberLink>
+          <NonmemberLink onClick={googleLogout}>Gooogle Logout</NonmemberLink>
         </LoginContent>
         <Aside>
           <AsideOverlay />

@@ -1,14 +1,16 @@
 import { useEffect, useState } from 'react';
+import useWeatherIcon from './useWeatherIcon';
 import axios from 'axios';
 
 const WEATHER_KEY = process.env.REACT_APP_OPENWEATHER_KEY;
 
-const useFetch = (city) => {
+const WeatherDetailFunc = (lat, lon) => {
+  const [image, setImage] = useState([]);
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
 
-  const query = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${WEATHER_KEY}&units=metric`;
+  const query = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,alerts,hourly&appid=${WEATHER_KEY}&units=metric`;
 
   useEffect(() => {
     axios
@@ -26,4 +28,4 @@ const useFetch = (city) => {
   return { loading, data, error };
 };
 
-export default useFetch;
+export default WeatherDetailFunc;

@@ -2,12 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 import { useTheme } from '../../hooks/useTheme';
 import { Box, Title, PlusBox } from './AddCard';
+
 import clearDark from '../../assets/animated/weatherCategory/clear-dark.gif';
 import clearLight from '../../assets/animated/weatherCategory/clear-light.gif';
 
 import { ReactComponent as DarkCity } from '../../assets/svgs/darkCity.svg';
 import { ReactComponent as GreenArrow } from '../../assets/svgs/greenArrow.svg';
 import { ReactComponent as RedArrow } from '../../assets/svgs/redArrow.svg';
+import useWeatherIcon from '../../hooks/useWeatherIcon';
 
 const WeatherInfoBox = styled.div`
   text-align: center;
@@ -60,34 +62,37 @@ const SingleMaxText = styled.span`
   color: #ff0070;
 `;
 
-const WeatherCard = () => {
+const WeatherCard = ({ data }) => {
   const { theme } = useTheme();
+  const weatherIcon = useWeatherIcon(data.weather[0].main);
   return (
     <Box>
-      <Title>Seoul</Title>
+      <Title>{data && data.name}</Title>
       <PlusBox>
         <img
-          src={theme.themeName === 'lightTheme' ? clearLight : clearDark}
+          src={
+            theme.themeName === 'lightTheme' ? weatherIcon[0] : weatherIcon[1]
+          }
           alt="asd"
         />
       </PlusBox>
       <WeatherInfoBox>
-        <CurrentTmp>3°</CurrentTmp>
-        <WeatherStatus>Clear</WeatherStatus>
+        <CurrentTmp>{data && Math.round(data.main.temp)}°</CurrentTmp>
+        <WeatherStatus>{data && data.weather[0].description}</WeatherStatus>
       </WeatherInfoBox>
       <MinMaxContainer>
         <SingleContainer>
           <ArrowContainer>
             <GreenArrow />
           </ArrowContainer>
-          <MinTemp>3°</MinTemp>
+          <MinTemp>{data && Math.round(data.main.temp_min)}°</MinTemp>
           <SingleMinText>Min</SingleMinText>
         </SingleContainer>
         <SingleContainer>
           <ArrowContainer>
             <RedArrow />
           </ArrowContainer>
-          <MinTemp>21°</MinTemp>
+          <MinTemp>{data && Math.round(data.main.temp_max)}°</MinTemp>
           <SingleMaxText>Max</SingleMaxText>
         </SingleContainer>
       </MinMaxContainer>
