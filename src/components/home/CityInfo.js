@@ -4,7 +4,7 @@ import axios from 'axios';
 const CityInfo = () => {
   const [city, setCity] = useState('default');
 
-  const success = (position) => {
+  const getPositionSuccessed = (position) => {
     const lat = position.coords.latitude;
     const lng = position.coords.longitude;
     const key = process.env.GOOGLE_MAP_KEY;
@@ -18,7 +18,7 @@ const CityInfo = () => {
     });
   };
 
-  const error = () => {
+  const getPositionFailed = () => {
     console.log('위치 정보를 가져올 수 없습니다.');
   };
 
@@ -26,7 +26,10 @@ const CityInfo = () => {
     if (!navigator.geolocation) {
       console.log('현재 브라우저가 Geolocation API를 지원하지 않습니다.');
     } else {
-      navigator.geolocation.getCurrentPosition(success, error);
+      navigator.geolocation.getCurrentPosition(
+        getPositionSuccessed,
+        getPositionFailed
+      );
     }
   };
 
