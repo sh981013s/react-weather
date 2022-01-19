@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 const CityInfo = () => {
-  const [city, setCity] = useState('default');
+  const [city, setCity] = useState('');
 
   const getPositionSuccessed = (position) => {
     const lat = position.coords.latitude;
