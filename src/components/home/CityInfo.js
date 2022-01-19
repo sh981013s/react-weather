@@ -8,11 +8,11 @@ const CityInfo = () => {
     const lat = position.coords.latitude;
     const lng = position.coords.longitude;
     const key = process.env.GOOGLE_MAP_KEY;
-    let url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&language=en&key=${key}`;
+    const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&language=en&key=${key}`;
 
     axios.get(url).then(({ data }) => {
-      let len = data.results.length;
-      let arr = data.results[len - 3].formatted_address.split(', ');
+      const len = data.results.length;
+      const arr = data.results[len - 3].formatted_address.split(', ');
       console.log(arr[0]); // 현재 도시 콘솔 출력
       setCity(arr[0]);
     });
