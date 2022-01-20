@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-// import { auth, signInWithGoogle } from '../../firebase/firebaseConfig';
+import { signInWithGoogle } from '../../firebase/firebaseConfig';
 import { Link } from 'react-router-dom';
 import { useSignup } from '../../hooks/useSingup';
 import { useLogin } from '../../hooks/useLogin';
@@ -162,7 +162,7 @@ const Login = () => {
             <SignupLink to="/signup">Sign up</SignupLink>
           </SignupWrapper>
           <NonmemberLink>비회원으로 로그인</NonmemberLink>
-          <NonmemberLink>Google</NonmemberLink>
+          <NonmemberLink onClick={signInWithGoogle}>Google</NonmemberLink>
           <NonmemberLink>Gooogle Logout</NonmemberLink>
         </LoginContent>
         <Aside>

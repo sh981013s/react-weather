@@ -4,7 +4,7 @@
 
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
-import { getAuth } from 'firebase/auth';
+import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -28,9 +28,9 @@ export const auth = getAuth();
 // export const firebaseInstance = firebase;
 // export const auth = firebase.auth();
 //
-// // 구글 사용
-// const provider = new firebase.auth.GoogleAuthProvider();
-// // 구글 팝업 default
-// provider.setCustomParameters({ prompt: 'select_account' });
-//
-// export const signInWithGoogle = () => auth.signInWithPopup(provider);
+// 구글 사용
+export const provider = new GoogleAuthProvider();
+// 구글 팝업 default
+provider.setCustomParameters({ prompt: 'select_account' });
+
+export const signInWithGoogle = () => signInWithPopup(auth, provider);
