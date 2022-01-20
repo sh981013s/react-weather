@@ -5,6 +5,7 @@ import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
 } from 'react-places-autocomplete';
+import { useCurrentLocation } from '../../hooks/useCurrentLocation';
 
 const AddCard = styled(DetailCard)`
   display: flex;
@@ -19,6 +20,7 @@ const searchOptions = {
 const AddCity = () => {
   const [address, setAddress] = useState('');
   const [real, setReal] = useState('');
+  const {getCurrentLocation, error, city} = useCurrentLocation();
 
   const searchOptions = {
     types: ['(cities)'],
@@ -69,6 +71,8 @@ const AddCity = () => {
             </div>
           )}
         </PlacesAutocomplete>
+        <button onClick={getCurrentLocation}>asdasd</button>
+        <p>{city}</p>
       </AddCard>
     </Box>
   );
