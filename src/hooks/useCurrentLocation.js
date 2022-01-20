@@ -12,10 +12,8 @@ export const useCurrentLocation = () => {
     const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${long}&language=en&key=${key}`;
 
     axios.get(url).then(({ data }) => {
-      console.log(lat, long)
       const len = data.results.length;
       const arr = data.results[len - 3].formatted_address.split(', ');
-      console.log(arr[0]); // 현재 도시 콘솔 출력
       setCity(arr[0]);
     });
   };

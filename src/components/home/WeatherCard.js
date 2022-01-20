@@ -63,8 +63,9 @@ const SingleMaxText = styled.span`
 `;
 
 const WeatherCard = ({ data }) => {
+  console.log(data, 'dd');
   const { theme } = useTheme();
-  const weatherIcon = useWeatherIcon(data.weather[0].main);
+  const weatherIcon = useWeatherIcon(data.weather);
   return (
     <Box>
       <Title>{data && data.name}</Title>
@@ -77,22 +78,22 @@ const WeatherCard = ({ data }) => {
         />
       </PlusBox>
       <WeatherInfoBox>
-        <CurrentTmp>{data && Math.round(data.main.temp)}°</CurrentTmp>
-        <WeatherStatus>{data && data.weather[0].description}</WeatherStatus>
+        <CurrentTmp>{data && Math.round(data.temp)}°</CurrentTmp>
+        <WeatherStatus>{data && data.weather_desc}</WeatherStatus>
       </WeatherInfoBox>
       <MinMaxContainer>
         <SingleContainer>
           <ArrowContainer>
             <GreenArrow />
           </ArrowContainer>
-          <MinTemp>{data && Math.round(data.main.temp_min)}°</MinTemp>
+          <MinTemp>{data && Math.round(data.temp_min)}°</MinTemp>
           <SingleMinText>Min</SingleMinText>
         </SingleContainer>
         <SingleContainer>
           <ArrowContainer>
             <RedArrow />
           </ArrowContainer>
-          <MinTemp>{data && Math.round(data.main.temp_max)}°</MinTemp>
+          <MinTemp>{data && Math.round(data.temp_max)}°</MinTemp>
           <SingleMaxText>Max</SingleMaxText>
         </SingleContainer>
       </MinMaxContainer>

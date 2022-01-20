@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useMemo } from 'react';
 import styled from 'styled-components';
 import WeatherCard from '../../components/home/WeatherCard';
 import AddCard from '../../components/home/AddCard';
@@ -6,6 +6,8 @@ import useFetch from '../../hooks/useFetch';
 import useWeather from '../../hooks/useWeather';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { useAuthContext } from '../../hooks/useAuthContext';
+import { useCollection } from '../../hooks/useCollection';
 
 const Box = styled(motion.div)`
   padding-top: 15vh;
@@ -36,8 +38,17 @@ const StyledLink = styled(Link)`
 `;
 
 const Home = () => {
+  const { user } = useAuthContext();
   const ref = useRef(null);
-  const { lodaing, data, error } = useWeather('seoul');
+  const { loading, data, error } = useWeather('seoul');
+
+  const { documents: cities } = useCollection('city', [
+    'userId',
+    '==',
+    user?.uid,
+  ]);
+
+  console.log(cities, 'cc');
 
   useEffect(() => {
     const element = ref.current;
@@ -59,13 +70,23 @@ const Home = () => {
       exit={{ opacity: 0, transition: { duration: 0.5 } }}
     >
       <Main ref={ref}>
-        {data && (
+        {/*        {user && data && (
           <StyledLink
             to={`/city/${data.name}/${data.coord.lat}/${data.coord.lon}`}
           >
             <WeatherCard data={data} />
           </StyledLink>
-        )}
+        )}*/}
+        {user &&
+          cities &&
+          cities.map((city) => {
+            console.log(city, 'prop');
+            return (
+              <StyledLink to={`/city/${city.name}/${city.lat}/${city.lon}`}>
+                <WeatherCard data={city} />
+              </StyledLink>
+            );
+          })}
         <StyledLink to="/addcity">
           <AddCard />
         </StyledLink>
