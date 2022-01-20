@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { signInWithGoogle } from '../../firebase/firebaseConfig';
+// import { auth, signInWithGoogle } from '../../firebase/firebaseConfig';
 import { Link } from 'react-router-dom';
 import { useSignup } from '../../hooks/useSingup';
-import { useLogin } from '../../hooks/useLogin';
 
 const Box = styled.div`
   position: relative;
@@ -61,7 +60,7 @@ const LoginInput = styled.input`
   width: 80%;
 `;
 
-const LoginBtn = styled.div`
+const LoginBtn = styled.button`
   background-color: #00ff9b;
   padding: 1rem;
   border-radius: 2rem;
@@ -117,53 +116,62 @@ const AsideOverlay = styled.div`
   border-radius: 0 10px 10px 0;
 `;
 
-const Login = () => {
+const SignUp = () => {
+  // auth.onAuthStateChanged((user) => {
+  //   if (user !== null) {
+  //     console.log('logged in');
+  //     console.log(user);
+  //   } else {
+  //     console.log('no user');
+  //   }
+  // });
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { login, error } = useLogin();
+  const [displayName, setDisplayName] = useState('');
+  const { signup, error } = useSignup();
+
+  // const googleLogout = () => {
+  //   auth.signOut();
+  // };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    login(email, password);
+    signup(email, password, displayName);
   };
 
   return (
     <Box>
       <Card>
         <LoginContent>
-          <Header>Login</Header>
+          <Header>SignUp</Header>
           <Form>
             <LoginInput
-              type="mail"
+              type="input"
               name="email"
               placeholder="Email"
               onChange={(e) => setEmail(e.target.value)}
-              value={email}
             />
             <LoginInput
               type="password"
               name="password"
               placeholder="Password"
               onChange={(e) => setPassword(e.target.value)}
-              value={password}
             />
-            <LoginBtn
-              onClick={handleSubmit}
-              name="submit"
-              type="submit"
-              value="Login"
-            >
-              Login
-            </LoginBtn>
+            <LoginInput
+              name="displayName"
+              placeholder="displayName"
+              onChange={(e) => setDisplayName(e.target.value)}
+            />
+            {/*{!isPending && <LoginBtn onClick={handleSubmit}>Signup</LoginBtn>}*/}
+            {/*{isPending && <LoginBtn disabled>Signup Processing...</LoginBtn>}*/}
+            <LoginBtn onClick={handleSubmit}>Signup</LoginBtn>
             {error && <p>{error}</p>}
           </Form>
           <SignupWrapper>
-            Don't have an account?
-            <SignupLink to="/signup">Sign up</SignupLink>
+            Already have an account?
+            <SignupLink to="/login">Log in</SignupLink>
           </SignupWrapper>
-          <NonmemberLink>비회원으로 로그인</NonmemberLink>
-          <NonmemberLink onClick={signInWithGoogle}>Google</NonmemberLink>
-          <NonmemberLink>Gooogle Logout</NonmemberLink>
         </LoginContent>
         <Aside>
           <AsideOverlay />
@@ -173,4 +181,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignUp;

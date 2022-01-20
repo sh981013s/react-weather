@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { Icon } from '@iconify/react';
 import useOnClickOutside from '../../../hooks/useOnClickOutside';
+import { useLogout } from '../../../hooks/useLogout';
 
 const Box = styled.div`
   position: fixed;
@@ -62,6 +63,8 @@ const Bar = styled.div`
 `;
 
 const Sidebar = ({ sidebar, setSidebar }) => {
+  const { logout } = useLogout();
+
   const sidebarHandler = () => {
     setSidebar(!sidebar);
   };
@@ -79,8 +82,8 @@ const Sidebar = ({ sidebar, setSidebar }) => {
           <Username>Welcome SeungHwan!</Username>
         </Avatar>
         <Bar>asdasd</Bar>
-        <Bar>asdasd</Bar>
-        <Bar>asdasd</Bar>
+        <Bar>login</Bar>
+        <Bar onClick={logout}>logout</Bar>
         <Bar>asdasd</Bar>
         <Bar>asdasd</Bar>
       </SidebarStyled>

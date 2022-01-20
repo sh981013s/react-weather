@@ -6,18 +6,17 @@ import ThemeSelector from './ThemeSelector';
 import Logo from '../../../assets/images/logo2.png';
 import { Icon } from '@iconify/react';
 import Sidebar from '../Sidebar/Sidebar';
+import { useLogout } from '../../../hooks/useLogout';
 
 const NavbarStyled = styled.nav`
   position: absolute;
   width: 100%;
-  display: grid;
-  grid-template-columns: 1fr 1fr 0.25fr;
-  grid-template-rows: 1fr;
-  align-items: center;
-  align-self: center;
+  height: 60px;
+
+  display: flex;
+  flex-direction: column;
 
   box-shadow: 0 0 2rem rgba(0, 0, 255, 0.1);
-  height: 7.3vh;
   transition: background-color 500ms linear;
   animation: 1s ease-in-out 0ms 1 fade-in;
   background: ${(props) => props.theme.navbar};
@@ -28,7 +27,7 @@ const NavbarStyled = styled.nav`
     display: inline-block;
     width: 3rem;
     overflow: hidden;
-    margin: 0 0 20px 20px;
+    margin: 0 0 10px 20px;
     &:hover {
       cursor: pointer;
     }
@@ -36,22 +35,50 @@ const NavbarStyled = styled.nav`
 `;
 
 const LeftSection = styled.div`
-  /* display: grid;
-  grid-template-rows: 1fr;
-  grid-template-columns: 1fr 1fr;
-  max-width: 5rem; */
-  padding-left: 1.5rem;
+  flex: 70%;
   display: flex;
   align-items: center;
+  padding-left: 5%;
+`;
+
+const RightSection = styled.div`
+  flex: 30%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 50px;
+`;
+
+const NavBarInner = styled.div`
+  width: 100%;
+  height: 60px;
+  display: flex;
+`;
+
+const NavbarLinkContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const NavBarExtended = styled.div``;
+
+const NavbarLink = styled(Link)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+`;
+
+const LogoutBtn = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
 `;
 
 const NavName = styled.h1`
   font-weight: 500;
-`;
-
-const DateText = styled.h3`
-  display: flex;
-  align-items: center;
 `;
 
 const HamburgerIcon = styled(Icon)`
@@ -62,30 +89,40 @@ const HamburgerIcon = styled(Icon)`
 `;
 
 const Navbar = (props) => {
-  const { theme } = useTheme();
+  // const { theme } = useTheme();
   const [sidebar, setSidebar] = useState(false);
 
-  const sidebarHandler = () => setSidebar(!sidebar);
+  // const sidebarHandler = () => setSidebar(!sidebar);
+
+  const { logout } = useLogout();
 
   return (
     <>
       <NavbarStyled>
-        <LeftSection>
-          <HamburgerIcon
-            icon="radix-icons:hamburger-menu"
-            width="30"
-            height="30"
-            onClick={sidebarHandler}
-          />
-          <Link to="/">
-            <img src={Logo} alt="logo" />
-          </Link>
-          <NavName>House' The Weather?</NavName>
-        </LeftSection>
-        <DateText>Today</DateText>
-        <ThemeSelector />
+        <NavBarInner>
+          <LeftSection>
+            <NavbarLinkContainer>
+              {/*<HamburgerIcon*/}
+              {/*  icon="radix-icons:hamburger-menu"*/}
+              {/*  width="30"*/}
+              {/*  height="30"*/}
+              {/*  onClick={sidebarHandler}*/}
+              {/*/>*/}
+              <NavbarLink to="/">
+                <img src={Logo} alt="logo" />
+              </NavbarLink>
+              <NavbarLink to="/login">Login</NavbarLink>
+              <LogoutBtn onClick={logout}>Logout</LogoutBtn>
+              <NavbarLink to="/">Compare</NavbarLink>
+            </NavbarLinkContainer>
+          </LeftSection>
+          <RightSection>
+            <ThemeSelector />
+          </RightSection>
+        </NavBarInner>
+        <NavBarExtended></NavBarExtended>
       </NavbarStyled>
-      <Sidebar sidebar={sidebar} setSidebar={setSidebar} />
+      {/*<Sidebar sidebar={sidebar} setSidebar={setSidebar} />*/}
     </>
   );
 };
