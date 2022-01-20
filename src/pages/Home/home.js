@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React, { useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import WeatherCard from '../../components/home/WeatherCard';
@@ -6,8 +5,9 @@ import AddCard from '../../components/home/AddCard';
 import useFetch from '../../hooks/useFetch';
 import useWeather from '../../hooks/useWeather';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
-const Box = styled.div`
+const Box = styled(motion.div)`
   padding-top: 15vh;
   width: 100%;
   min-height: 400vh;
@@ -53,7 +53,11 @@ const Home = () => {
   }, []);
 
   return (
-    <Box>
+    <Box
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1, transition: { duration: 0.5 } }}
+      exit={{ opacity: 0, transition: { duration: 0.5 } }}
+    >
       <Main ref={ref}>
         {data && (
           <StyledLink
