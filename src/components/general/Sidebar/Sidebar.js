@@ -32,20 +32,16 @@ const SidebarStyled = styled.div`
   clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
 `;
 
-const NavIcon = styled.div`
+export const NavIcon = styled.div`
   font-size: 2rem;
-  width: 100%;
-  height: 80px;
-  /* display: flex;
-  justify-content: flex-end;
-  align-items: center; */
   position: absolute;
   top: 1rem;
-  left: 0rem;
+  right: 1.5rem;
 `;
 
-const CloseIcon = styled(Icon)`
-  color: ${(props) => props.theme.text};
+export const CloseIcon = styled(Icon)`
+  color: red;
+  z-index: 99;
 `;
 
 const Avatar = styled.header`
@@ -65,7 +61,7 @@ const Bar = styled.div`
 const Sidebar = ({ sidebar, setSidebar }) => {
   const { logout } = useLogout();
 
-  const sidebarHandler = () => {
+  const sidebarHandler = (e) => {
     setSidebar(!sidebar);
   };
 

@@ -2,14 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 import { useTheme } from '../../hooks/useTheme';
 import { Box, Title, PlusBox } from './AddCard';
+import { CloseIcon, NavIcon } from '../general/Sidebar/Sidebar';
 
-import clearDark from '../../assets/animated/weatherCategory/clear-dark.gif';
-import clearLight from '../../assets/animated/weatherCategory/clear-light.gif';
-
-import { ReactComponent as DarkCity } from '../../assets/svgs/darkCity.svg';
 import { ReactComponent as GreenArrow } from '../../assets/svgs/greenArrow.svg';
 import { ReactComponent as RedArrow } from '../../assets/svgs/redArrow.svg';
 import useWeatherIcon from '../../hooks/useWeatherIcon';
+import { deleteDoc, doc } from 'firebase/firestore';
+import { db } from '../../firebase/firebaseConfig';
 
 const WeatherInfoBox = styled.div`
   text-align: center;
@@ -63,11 +62,24 @@ const SingleMaxText = styled.span`
 `;
 
 const WeatherCard = ({ data }) => {
-  console.log(data, 'dd');
   const { theme } = useTheme();
   const weatherIcon = useWeatherIcon(data.weather);
+
+  const closeHandler = (event) => {
+    const deleteCity = async (id) => {
+      const ref = doc(db, 'city', id);
+      await deleteDoc(ref);
+    };
+    event.preventDefault();
+    event.stopPropagation();
+    deleteCity(data.fireId);
+  };
+
   return (
     <Box>
+      <NavIcon onClick={() => console.log(333)}>
+        <CloseIcon onClick={closeHandler} icon="ep:close-bold" />
+      </NavIcon>
       <Title>{data && data.name}</Title>
       <PlusBox>
         <img

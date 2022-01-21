@@ -4,7 +4,7 @@ import { collection, onSnapshot, query, where } from 'firebase/firestore';
 import axios from 'axios';
 
 export const useCollection = (c, _q) => {
-  const [documents, setDocuments] = useState(null);
+  const [documents, setDocuments] = useState([]);
   const key = process.env.REACT_APP_OPENWEATHER_KEY;
 
   const q = useRef(_q).current;
@@ -23,6 +23,11 @@ export const useCollection = (c, _q) => {
       let string = '';
       let fireIdList = [];
       let final = [];
+
+      if (snapshot.docs.length === 0) {
+        setDocuments([]);
+        return { documents };
+      }
 
       snapshot.docs.forEach((doc) => {
         results.push({ ...doc.data(), id: doc.id });

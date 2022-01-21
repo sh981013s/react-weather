@@ -40,15 +40,12 @@ const StyledLink = styled(Link)`
 const Home = () => {
   const { user } = useAuthContext();
   const ref = useRef(null);
-  const { loading, data, error } = useWeather('seoul');
 
   const { documents: cities } = useCollection('city', [
     'userId',
     '==',
     user?.uid,
   ]);
-
-  console.log(cities, 'cc');
 
   useEffect(() => {
     const element = ref.current;
@@ -70,21 +67,15 @@ const Home = () => {
       exit={{ opacity: 0, transition: { duration: 0.5 } }}
     >
       <Main ref={ref}>
-        {/*        {user && data && (
-          <StyledLink
-            to={`/city/${data.name}/${data.coord.lat}/${data.coord.lon}`}
-          >
-            <WeatherCard data={data} />
-          </StyledLink>
-        )}*/}
         {user &&
           cities &&
           cities.map((city) => {
-            console.log(city, 'prop');
             return (
-              <StyledLink to={`/city/${city.name}/${city.lat}/${city.lon}`}>
-                <WeatherCard data={city} />
-              </StyledLink>
+              <div key={city.fireId}>
+                <StyledLink to={`/city/${city.name}/${city.lat}/${city.lon}`}>
+                  <WeatherCard data={city} key={city.fireId} />
+                </StyledLink>
+              </div>
             );
           })}
         <StyledLink to="/addcity">
