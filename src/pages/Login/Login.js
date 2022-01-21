@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { signInWithGoogle } from '../../firebase/firebaseConfig';
 import { Link } from 'react-router-dom';
-import { useSignup } from '../../hooks/useSingup';
 import { useLogin } from '../../hooks/useLogin';
 
 const Box = styled.div`

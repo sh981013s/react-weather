@@ -25,7 +25,7 @@ const Main = styled.ul`
   display: flex;
 `;
 
-const StyledLink = styled(Link)`
+export const StyledLink = styled(Link)`
   text-decoration: none;
 
   &:focus,
@@ -46,6 +46,8 @@ const Home = () => {
     '==',
     user?.uid,
   ]);
+
+  console.log(cities, 'ccc');
 
   useEffect(() => {
     const element = ref.current;

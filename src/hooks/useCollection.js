@@ -25,14 +25,17 @@ export const useCollection = (c, _q) => {
       let final = [];
 
       if (snapshot.docs.length === 0) {
+        console.log('empty');
         setDocuments([]);
         return { documents };
       }
 
+      console.log(1);
+      console.log(snapshot.docs, 'snap');
+
       snapshot.docs.forEach((doc) => {
         results.push({ ...doc.data(), id: doc.id });
       });
-      // setDocuments(results);
 
       for (let i = 0; i <= results.length - 1; i++) {
         fireIdList.push(results[i].id);
@@ -65,6 +68,5 @@ export const useCollection = (c, _q) => {
     return () => unsub();
   }, [c, q]);
 
-  console.log(documents, 'collection data');
   return { documents };
 };

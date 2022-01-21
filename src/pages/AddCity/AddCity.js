@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Box, DetailCard } from '../WeatherDetail/WeatherDetail';
+import { useHistory } from 'react-router-dom';
 import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
@@ -21,12 +22,14 @@ const searchOptions = {
 const AddCity = () => {
   const [address, setAddress] = useState('');
   const [real, setReal] = useState('');
-  const {getCurrentLocation, error, city} = useCurrentLocation();
-  const {addCity, findError} = useAddCity();
+  const { getCurrentLocation, error, city } = useCurrentLocation();
+  const { addCity, findError } = useAddCity();
+  const history = useHistory();
 
   const handleSubmit = () => {
-    addCity(real)
-  }
+    addCity(real);
+    // history.push('/');
+  };
 
   const searchOptions = {
     types: ['(cities)'],

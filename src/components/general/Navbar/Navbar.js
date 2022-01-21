@@ -5,8 +5,9 @@ import { useTheme } from '../../../hooks/useTheme';
 import ThemeSelector from './ThemeSelector';
 import Logo from '../../../assets/images/logo2.png';
 import { Icon } from '@iconify/react';
-import Sidebar from '../Sidebar/Sidebar';
+import { StyledLink } from '../../../pages/Home/Home';
 import { useLogout } from '../../../hooks/useLogout';
+import { useAuthContext } from '../../../hooks/useAuthContext';
 
 const NavbarStyled = styled.nav`
   position: absolute;
@@ -63,7 +64,8 @@ const NavbarLinkContainer = styled.div`
 
 const NavBarExtended = styled.div``;
 
-const NavbarLink = styled(Link)`
+const NavbarLink = styled(StyledLink)`
+  color: ${(props) => props.theme.text};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -89,10 +91,9 @@ const HamburgerIcon = styled(Icon)`
 `;
 
 const Navbar = (props) => {
-  // const { theme } = useTheme();
-  const [sidebar, setSidebar] = useState(false);
+  const { user } = useAuthContext();
 
-  // const sidebarHandler = () => setSidebar(!sidebar);
+  console.log(user, 'user');
 
   const { logout } = useLogout();
 
@@ -102,17 +103,11 @@ const Navbar = (props) => {
         <NavBarInner>
           <LeftSection>
             <NavbarLinkContainer>
-              {/*<HamburgerIcon*/}
-              {/*  icon="radix-icons:hamburger-menu"*/}
-              {/*  width="30"*/}
-              {/*  height="30"*/}
-              {/*  onClick={sidebarHandler}*/}
-              {/*/>*/}
               <NavbarLink to="/">
                 <img src={Logo} alt="logo" />
               </NavbarLink>
-              <NavbarLink to="/login">Login</NavbarLink>
-              <LogoutBtn onClick={logout}>Logout</LogoutBtn>
+              {user && <LogoutBtn onClick={logout}>Logout</LogoutBtn>}
+              {!user && <NavbarLink to="/login">Login</NavbarLink>}
               <NavbarLink to="/">Compare</NavbarLink>
             </NavbarLinkContainer>
           </LeftSection>

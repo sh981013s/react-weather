@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 // import { auth, signInWithGoogle } from '../../firebase/firebaseConfig';
 import { Link } from 'react-router-dom';
-import { useSignup } from '../../hooks/useSingup';
+import { useSignup } from '../../hooks/useSignup';
 
 const Box = styled.div`
   position: relative;
@@ -117,23 +117,10 @@ const AsideOverlay = styled.div`
 `;
 
 const SignUp = () => {
-  // auth.onAuthStateChanged((user) => {
-  //   if (user !== null) {
-  //     console.log('logged in');
-  //     console.log(user);
-  //   } else {
-  //     console.log('no user');
-  //   }
-  // });
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [displayName, setDisplayName] = useState('');
   const { signup, error } = useSignup();
-
-  // const googleLogout = () => {
-  //   auth.signOut();
-  // };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -160,7 +147,7 @@ const SignUp = () => {
             />
             <LoginInput
               name="displayName"
-              placeholder="displayName"
+              placeholder="Nickname"
               onChange={(e) => setDisplayName(e.target.value)}
             />
             {/*{!isPending && <LoginBtn onClick={handleSubmit}>Signup</LoginBtn>}*/}

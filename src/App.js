@@ -43,7 +43,10 @@ const App = () => {
                 {user && <Redirect to="/" />}
                 <SignUp />
               </Route>
-              <Route exact path="/addcity" component={AddCity} />
+              <Route exact path="/addcity">
+                {!user && <Redirect to="/login" />}
+                <AddCity />
+              </Route>
               <Route path="/city/:name/:lat/:long" component={WeatherDetail} />
             </ContentBox>
           </Router>

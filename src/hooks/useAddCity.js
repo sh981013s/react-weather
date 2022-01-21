@@ -17,7 +17,8 @@ export const useAddCity = () => {
 
     const q = query(
       collection(db, 'city'),
-      where('name', '==', keyWord.toLowerCase())
+      where('name', '==', keyWord.toLowerCase()),
+      where('userId', '==', user.uid)
     );
     const querySnapshot = await getDocs(q);
     console.log(querySnapshot.docs, 'querysnap');
