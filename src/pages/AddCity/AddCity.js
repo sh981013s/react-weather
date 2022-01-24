@@ -26,9 +26,15 @@ const AddCity = () => {
   const { addCity, findError } = useAddCity();
   const history = useHistory();
 
-  const handleSubmit = () => {
-    addCity(real);
-    // history.push('/');
+  const handleSubmit = async () => {
+    await addCity(real);
+    history.push('/');
+  };
+
+  const locationSubmit = async () => {
+    await getCurrentLocation();
+    await addCity(city);
+    history.push('/');
   };
 
   const searchOptions = {
@@ -82,8 +88,7 @@ const AddCity = () => {
         </PlacesAutocomplete>
         {findError && <p>{findError}</p>}
         <button onClick={handleSubmit}>Submit</button>
-        <p>Add by currentLocation</p>
-        <button onClick={getCurrentLocation}>getCur</button>
+        <button onClick={locationSubmit}>현재 위치 기준 추가</button>
       </AddCard>
     </Box>
   );

@@ -25,20 +25,18 @@ export const useCurrentLocation = () => {
   const getCurrentLocation = () => {
     if (!navigator.geolocation) {
       console.log('현재 브라우저가 Geolocation API를 지원하지 않습니다.');
-      setError('브라우저에서 현재 위치를 찾을 수 없습니다.')
+      setError('브라우저에서 현재 위치를 찾을 수 없습니다.');
     } else {
       try {
         navigator.geolocation.getCurrentPosition(
           getPositionSuccessed,
           getPositionFailed
         );
-      }
-      catch (err){
+      } catch (err) {
         setError(err.message);
       }
     }
   };
 
-  return {getCurrentLocation, error, city}
+  return { getCurrentLocation, error, city };
 };
-
