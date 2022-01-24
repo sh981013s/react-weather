@@ -13,15 +13,13 @@ export const useAddCity = () => {
     const keyWord = name.includes(',') ? name.split(',')[0] : name;
     const url = `https://api.openweathermap.org/data/2.5/weather?appid=${key}&q=${keyWord}`;
 
-    console.log(keyWord.toLowerCase);
-
     const q = query(
       collection(db, 'city'),
       where('name', '==', keyWord.toLowerCase()),
       where('userId', '==', user.uid)
     );
     const querySnapshot = await getDocs(q);
-    console.log(querySnapshot.docs, 'querysnap');
+
     if (querySnapshot.docs.length > 0) {
       setFindError(`'${keyWord}' already exists`);
       return;
@@ -29,10 +27,13 @@ export const useAddCity = () => {
       axios
         .get(url)
         .then(({ data }) => {
+          console.log(data, 'ddddd');
           addDoc(collection(db, 'city'), {
             name: keyWord.toLowerCase(),
             title: data.id,
             userId: user.uid,
+            lon: data.coord.lon,
+            lat: data.coord.lat,
           });
           console.log(user);
         })
