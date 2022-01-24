@@ -4,7 +4,7 @@ import { collection, onSnapshot, query, where } from 'firebase/firestore';
 import axios from 'axios';
 
 export const useCollection = (c, _q) => {
-  const [documents, setDocuments] = useState(null);
+  const [documents, setDocuments] = useState([]);
   const key = process.env.REACT_APP_OPENWEATHER_KEY;
 
   const q = useRef(_q).current;
@@ -24,10 +24,15 @@ export const useCollection = (c, _q) => {
       let fireIdList = [];
       let final = [];
 
+      if (snapshot.docs.length === 0) {
+        console.log('empty');
+        setDocuments([]);
+        return { documents };
+      }
+
       snapshot.docs.forEach((doc) => {
         results.push({ ...doc.data(), id: doc.id });
       });
-      // setDocuments(results);
 
       for (let i = 0; i <= results.length - 1; i++) {
         fireIdList.push(results[i].id);
@@ -60,6 +65,5 @@ export const useCollection = (c, _q) => {
     return () => unsub();
   }, [c, q]);
 
-  console.log(documents, 'collection data');
   return { documents };
 };

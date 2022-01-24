@@ -8,6 +8,7 @@ import { ReactComponent as DarkPlusSign } from '../../assets/svgs/plusSign-dark.
 import { useTheme } from '../../hooks/useTheme';
 
 export const Box = styled.li`
+  position: relative;
   width: 16rem;
   height: 50vh;
   background: ${(props) => props.theme.card};
