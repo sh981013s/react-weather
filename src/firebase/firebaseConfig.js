@@ -24,10 +24,6 @@ export const db = getFirestore();
 // init firebase auth
 export const auth = getAuth();
 
-//
-// export const firebaseInstance = firebase;
-// export const auth = firebase.auth();
-//
 // 구글 사용
 export const provider = new GoogleAuthProvider();
 // 구글 팝업 default

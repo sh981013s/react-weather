@@ -30,9 +30,6 @@ export const useCollection = (c, _q) => {
         return { documents };
       }
 
-      console.log(1);
-      console.log(snapshot.docs, 'snap');
-
       snapshot.docs.forEach((doc) => {
         results.push({ ...doc.data(), id: doc.id });
       });

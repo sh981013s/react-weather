@@ -134,7 +134,7 @@ const SignUp = () => {
           <Header>SignUp</Header>
           <Form>
             <LoginInput
-              type="input"
+              type="email"
               name="email"
               placeholder="Email"
               onChange={(e) => setEmail(e.target.value)}
