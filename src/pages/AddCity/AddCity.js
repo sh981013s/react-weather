@@ -31,11 +31,20 @@ const AddCity = () => {
     history.push('/');
   };
 
-  const locationSubmit = async () => {
-    await getCurrentLocation();
-    await addCity(city);
-    history.push('/');
+  const locationSubmit = () => {
+    getCurrentLocation();
   };
+
+  useEffect(() => {
+    const addCityWhenLocationValArrived = async () => {
+      if (city) {
+        await addCity(city);
+        history.push('/');
+      }
+    };
+
+    addCityWhenLocationValArrived();
+  }, [city]);
 
   const searchOptions = {
     types: ['(cities)'],
@@ -89,6 +98,7 @@ const AddCity = () => {
         {findError && <p>{findError}</p>}
         <button onClick={handleSubmit}>Submit</button>
         <button onClick={locationSubmit}>현재 위치 기준 추가</button>
+        {error ?? <p>{error}</p>}
       </AddCard>
     </Box>
   );
