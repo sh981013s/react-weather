@@ -30,7 +30,6 @@ const App = () => {
         {authIsReady && (
           <Router>
             <Navbar />
-
             <ContentBox>
               <Route exact path="/">
                 <Home />
@@ -47,7 +46,9 @@ const App = () => {
                 {!user && <Redirect to="/login" />}
                 <AddCity />
               </Route>
-              <Route path="/city/:name/:lat/:long" component={WeatherDetail} />
+              <Route path="/city/:name/:lat/:long" component={WeatherDetail}>
+                {!user && <Redirect to="/login" />}
+              </Route>
             </ContentBox>
           </Router>
         )}
