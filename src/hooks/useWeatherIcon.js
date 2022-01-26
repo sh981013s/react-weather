@@ -28,6 +28,8 @@ const WeatherIconFunc = (type) => {
       return [clearLight, clearDark];
     case 'clouds':
       return [cloudsLight, cloudsDark];
+    case 'mist':
+      return [cloudsLight, cloudsDark];
     default:
       return 0;
   }

@@ -1,9 +1,7 @@
-import React, { useRef, useEffect, useMemo } from 'react';
+import React, { useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import WeatherCard from '../../components/home/WeatherCard';
 import AddCard from '../../components/home/AddCard';
-import useFetch from '../../hooks/useFetch';
-import useWeather from '../../hooks/useWeather';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useAuthContext } from '../../hooks/useAuthContext';
@@ -46,8 +44,6 @@ const Home = () => {
     '==',
     user?.uid,
   ]);
-
-  console.log(cities, 'ccc');
 
   useEffect(() => {
     const element = ref.current;

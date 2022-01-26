@@ -31,8 +31,8 @@ const AddCity = () => {
     history.push('/');
   };
 
-  const locationSubmit = () => {
-    getCurrentLocation();
+  const locationSubmit = async () => {
+    await getCurrentLocation();
   };
 
   useEffect(() => {

@@ -3,4 +3,3 @@ export { default as SignUp } from './SignUp/SignUp';
 export { default as Login } from './Login/Login';
 export { default as WeatherDetail } from './WeatherDetail/WeatherDetail';
 export { default as AddCity } from './AddCity/AddCity';
-export { default as Compare } from './Compare/Compare';

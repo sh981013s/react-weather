@@ -2,7 +2,14 @@ import React, { Fragment, useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import styled, { ThemeProvider } from 'styled-components';
 import Navbar from './components/general/Navbar/Navbar';
-import { Home, Login, SignUp, WeatherDetail, AddCity } from './pages/index';
+import {
+  Home,
+  Login,
+  SignUp,
+  WeatherDetail,
+  AddCity,
+  Compare,
+} from './pages/index';
 import GlobalStyle from './globalStyles';
 import { LightTheme, DarkTheme } from './utility/Theme';
 import { useTheme } from './hooks/useTheme';

@@ -27,7 +27,6 @@ export const useAddCity = () => {
       axios
         .get(url)
         .then(({ data }) => {
-          console.log(data, 'ddddd');
           addDoc(collection(db, 'city'), {
             name: keyWord.toLowerCase(),
             title: data.id,
