@@ -24,6 +24,7 @@ const WeatherDetailFunc = (lat, lon) => {
         setLoading(false);
       });
   }, []);
+  console.log(data, 'dd');
 
   return { loading, data, error };
 };

@@ -109,7 +109,7 @@ const Navbar = (props) => {
               {user && <LogoutBtn onClick={logout}>Logout</LogoutBtn>}
               {!user && <NavbarLink to="/login">Login</NavbarLink>}
 
-              <NavbarLink to="/">Compare</NavbarLink>
+              <NavbarLink to="/compare">Compare</NavbarLink>
             </NavbarLinkContainer>
           </LeftSection>
           <RightSection>
