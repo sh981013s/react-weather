@@ -199,8 +199,6 @@ const BodyContentWrapper = styled.div`
 
 const ForecastContainer = styled.div`
   display: flex;
-  box-orient: horizontal;
-  box-direction: normal;
   flex-flow: row;
   flex-wrap: wrap;
 `;
