@@ -108,15 +108,12 @@ const Navbar = (props) => {
               </NavbarLink>
               {user && <LogoutBtn onClick={logout}>Logout</LogoutBtn>}
               {!user && <NavbarLink to="/login">Login</NavbarLink>}
-
-              <NavbarLink to="/compare">Compare</NavbarLink>
             </NavbarLinkContainer>
           </LeftSection>
           <RightSection>
             <ThemeSelector />
           </RightSection>
         </NavBarInner>
-        <NavBarExtended></NavBarExtended>
       </NavbarStyled>
       {/*<Sidebar sidebar={sidebar} setSidebar={setSidebar} />*/}
     </>

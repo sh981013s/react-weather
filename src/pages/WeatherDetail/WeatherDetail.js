@@ -4,6 +4,7 @@ import { ReactComponent as BackBtn } from '../../assets/svgs/backBtn.svg';
 import WeatherDetailFunc from '../../hooks/useWeatherDetail';
 import WeatherIconFunc from '../../hooks/weatherDetailIcon';
 import unixConverter from '../../utility/unixConverter';
+import { useHistory } from 'react-router-dom';
 
 export const Box = styled.div`
   background: ${(props) => props.theme.detailBackground};
@@ -46,6 +47,7 @@ export const DetailCard = styled.section`
   position: relative;
   z-index: 3;
   justify-items: center;
+  margin: 5rem 0;
 `;
 
 const CardHeaderContainer = styled.section`
@@ -248,6 +250,7 @@ const DayWeatherContainer = styled.div`
 `;
 
 const WeatherDetail = ({ match }) => {
+  const history = useHistory();
   const { name, lat, long } = match.params;
   const { data } = WeatherDetailFunc(lat, long);
   const [img, setImg] = useState([]);
@@ -261,10 +264,14 @@ const WeatherDetail = ({ match }) => {
     }
   }, [data]);
 
+  const toHome = () => {
+    history.push('/');
+  };
+
   return (
     <Box>
       <GradientCircle />
-      <BackBtnStyled>
+      <BackBtnStyled onClick={toHome}>
         <BackBtn />
       </BackBtnStyled>
       <DetailCard>
