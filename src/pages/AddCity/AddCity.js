@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 import PlacesAutocomplete from 'react-places-autocomplete';
 import { useCurrentLocation } from '../../hooks/useCurrentLocation';
 import { useAddCity } from '../../hooks/useAddCity';
+import { useAlert } from 'react-alert';
 
 const EntireBox = styled(Box)`
   background: ${(props) => props.theme.background};
@@ -59,6 +60,7 @@ const AddCityBtn = styled.button`
 `;
 
 const AddCity = () => {
+  const alert = useAlert();
   const [address, setAddress] = useState('');
   const [real, setReal] = useState('');
   const { getCurrentLocation, error, city } = useCurrentLocation();
@@ -67,10 +69,16 @@ const AddCity = () => {
 
   const handleSubmit = async () => {
     await addCity(real);
+    const successAlert = alert.success('🌃 도시 추가 완료', {
+      timeout: 4000,
+    });
     history.push('/');
   };
 
   const locationSubmit = async () => {
+    const successAlert = alert.success('🌃 도시 추가 완료', {
+      timeout: 4000,
+    });
     await getCurrentLocation();
   };
 
