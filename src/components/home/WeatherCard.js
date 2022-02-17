@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useTheme } from '../../hooks/useTheme';
 import { Box, Title, PlusBox } from './AddCard';
 import { CloseIcon, NavIcon } from '../general/Sidebar/Sidebar';
-
+import { useAlert } from 'react-alert';
 import { ReactComponent as GreenArrow } from '../../assets/svgs/greenArrow.svg';
 import { ReactComponent as RedArrow } from '../../assets/svgs/redArrow.svg';
 import useWeatherIcon from '../../hooks/useWeatherIcon';
@@ -62,6 +62,7 @@ const SingleMaxText = styled.span`
 `;
 
 const WeatherCard = ({ data }) => {
+  const alert = useAlert();
   const { theme } = useTheme();
   const weatherIcon = useWeatherIcon(data.weather);
 
@@ -73,11 +74,14 @@ const WeatherCard = ({ data }) => {
     event.preventDefault();
     event.stopPropagation();
     deleteCity(data.fireId);
+    const wrongAlert = alert.error('🌇 도시 삭제 완료', {
+      timeout: 4000,
+    });
   };
 
   return (
     <Box>
-      <NavIcon onClick={() => console.log(333)}>
+      <NavIcon>
         <CloseIcon onClick={closeHandler} icon="ep:close-bold" />
       </NavIcon>
       <Title>{data && data.name}</Title>
