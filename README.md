@@ -11,9 +11,9 @@
 
 ## 🖥 Demo
 
-![](.README_images/d0a97960.png)
+![](.README_images/3134a92c.png)
 
-![](.README_images/f4ccfc29.png)
+![](.README_images/1339a82b.png)
 
 ![](.README_images/923e4025.png)
 
