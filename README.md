@@ -11,7 +11,9 @@
 
 ## 🖥 Demo
 
-![](.README_images/124e7ca5.png)
+![](.README_images/d0a97960.png)
+
+![](.README_images/923e4025.png)
 
 * `Live Demo on Netlify:` <a href="https://house-the-weather.netlify.app/" target="\_blank">https://house-the-weather.netlify.app/</a>
 
