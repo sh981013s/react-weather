@@ -9,9 +9,7 @@ import { useHistory } from 'react-router-dom';
 export const Box = styled.div`
   background: ${(props) => props.theme.detailBackground};
   display: flex;
-  box-pack: center;
   justify-content: center;
-  box-align: center;
   align-items: center;
   position: relative;
   overflow: hidden;
@@ -59,7 +57,6 @@ const CardHeaderContainer = styled.section`
   }
   height: 510px;
   border-radius: 1rem 1rem 0 0;
-  position: relative;
   object-fit: cover;
   display: block;
 `;
@@ -76,7 +73,6 @@ const HeaderContentWrapper = styled.div`
 `;
 
 const TodayWeatherContainer = styled.div`
-  asign-self: center;
   justify-self: center;
   display: grid;
   width: 100%;
@@ -87,10 +83,7 @@ const TodayWeatherContainer = styled.div`
 `;
 const TempStateContainer = styled.div`
   display: flex;
-  box-pack: center;
   justify-content: center;
-  box-orient: vertical;
-  box-direction: normal;
   flex-flow: column;
   text-align: center;
 `;
@@ -102,8 +95,6 @@ const TemperatureText = styled.span`
 
 const WeatherStateContainer = styled.div`
   display: flex;
-  box-align: center;
-  box-orient: horizontal;
   align-items: center;
 `;
 
@@ -116,18 +107,13 @@ const WeatherStateText = styled.span`
 
 const HumWindContainer = styled.div`
   display: flex;
-  box-align: center;
   align-items: center;
 `;
 
 const HumContainer = styled.div`
   display: flex;
-  box-orient: vertical;
-  box-direction: normal;
   flex-flow: column;
-  box-pack: center;
   justify-content: center;
-  box-align: center;
   align-items: center;
 `;
 
@@ -139,7 +125,6 @@ const HumText = styled.span`
 `;
 
 const HumValueText = styled.span`
-  box-direction: normal;
   font-size: 1.2rem;
 `;
 
@@ -152,12 +137,8 @@ const HumWindSeparator = styled.div`
 
 const WindContainer = styled.div`
   display: flex;
-  box-orient: vertical;
-  box-direction: normal;
   flex-flow: column;
-  box-pack: center;
   justify-content: center;
-  box-align: center;
   align-items: center;
 `;
 
@@ -169,15 +150,12 @@ const WindText = styled.span`
 `;
 
 const WindValueText = styled.span`
-  box-direction: normal;
   font-size: 1.2rem;
 `;
 
 const CityNameContainer = styled.div`
   display: flex;
-  box-pack: center;
   justify-content: center;
-  box-align: center;
   align-items: center;
   padding-bottom: 25%;
 `;
@@ -202,7 +180,6 @@ const PictureContainer = styled.div`
   padding: 1em;
   img {
     width: 100%;
-    //height: 100%;
   }
 `;
 
@@ -210,10 +187,8 @@ const BodyContentWrapper = styled.div`
   display: grid;
   grid-template-rows: 1fr;
   justify-items: center;
-  box-pack: center;
   justify-content: center;
   align-content: start;
-  box-align: start;
   align-items: start;
   box-sizing: border-box;
   grid-column-gap: 1rem;
@@ -239,13 +214,9 @@ const SmallPictureContainer = styled.div`
 
 const DayWeatherContainer = styled.div`
   display: flex;
-  box-orient: vertical;
-  box-direction: normal;
   flex-flow: column;
   margin: 2rem 1.5rem;
-  box-pack: center;
   justify-content: center;
-  box-align: center;
   align-items: center;
 `;
 
