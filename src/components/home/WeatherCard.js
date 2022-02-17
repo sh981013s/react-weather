@@ -2,14 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 import { useTheme } from '../../hooks/useTheme';
 import { Box, Title, PlusBox } from './AddCard';
-
-import clearDark from '../../assets/animated/weatherCategory/clear-dark.gif';
-import clearLight from '../../assets/animated/weatherCategory/clear-light.gif';
-
-import { ReactComponent as DarkCity } from '../../assets/svgs/darkCity.svg';
+import { CloseIcon, NavIcon } from '../general/Sidebar/Sidebar';
+import { useAlert } from 'react-alert';
 import { ReactComponent as GreenArrow } from '../../assets/svgs/greenArrow.svg';
 import { ReactComponent as RedArrow } from '../../assets/svgs/redArrow.svg';
 import useWeatherIcon from '../../hooks/useWeatherIcon';
+import { deleteDoc, doc } from 'firebase/firestore';
+import { db } from '../../firebase/firebaseConfig';
 
 const WeatherInfoBox = styled.div`
   text-align: center;
@@ -63,10 +62,28 @@ const SingleMaxText = styled.span`
 `;
 
 const WeatherCard = ({ data }) => {
+  const alert = useAlert();
   const { theme } = useTheme();
-  const weatherIcon = useWeatherIcon(data.weather[0].main);
+  const weatherIcon = useWeatherIcon(data.weather);
+
+  const closeHandler = (event) => {
+    const deleteCity = async (id) => {
+      const ref = doc(db, 'city', id);
+      await deleteDoc(ref);
+    };
+    event.preventDefault();
+    event.stopPropagation();
+    deleteCity(data.fireId);
+    const wrongAlert = alert.error('🌇 도시 삭제 완료', {
+      timeout: 4000,
+    });
+  };
+
   return (
     <Box>
+      <NavIcon>
+        <CloseIcon onClick={closeHandler} icon="ep:close-bold" />
+      </NavIcon>
       <Title>{data && data.name}</Title>
       <PlusBox>
         <img
@@ -77,22 +94,22 @@ const WeatherCard = ({ data }) => {
         />
       </PlusBox>
       <WeatherInfoBox>
-        <CurrentTmp>{data && Math.round(data.main.temp)}°</CurrentTmp>
-        <WeatherStatus>{data && data.weather[0].description}</WeatherStatus>
+        <CurrentTmp>{data && Math.round(data.temp)}°</CurrentTmp>
+        <WeatherStatus>{data && data.weather_desc}</WeatherStatus>
       </WeatherInfoBox>
       <MinMaxContainer>
         <SingleContainer>
           <ArrowContainer>
             <GreenArrow />
           </ArrowContainer>
-          <MinTemp>{data && Math.round(data.main.temp_min)}°</MinTemp>
+          <MinTemp>{data && Math.round(data.temp_min)}°</MinTemp>
           <SingleMinText>Min</SingleMinText>
         </SingleContainer>
         <SingleContainer>
           <ArrowContainer>
             <RedArrow />
           </ArrowContainer>
-          <MinTemp>{data && Math.round(data.main.temp_max)}°</MinTemp>
+          <MinTemp>{data && Math.round(data.temp_max)}°</MinTemp>
           <SingleMaxText>Max</SingleMaxText>
         </SingleContainer>
       </MinMaxContainer>

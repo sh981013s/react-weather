@@ -4,17 +4,18 @@ import { ReactComponent as BackBtn } from '../../assets/svgs/backBtn.svg';
 import WeatherDetailFunc from '../../hooks/useWeatherDetail';
 import WeatherIconFunc from '../../hooks/weatherDetailIcon';
 import unixConverter from '../../utility/unixConverter';
+import { useHistory } from 'react-router-dom';
 
 export const Box = styled.div`
-  position: relative;
-  width: 100%;
-  min-height: 100vh;
   background: ${(props) => props.theme.detailBackground};
-  padding: 2rem 0;
-  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+  padding: 2rem 0;
+  width: 100vw;
 `;
 
 const GradientCircle = styled.div`
@@ -39,68 +40,186 @@ const BackBtnStyled = styled.div`
 `;
 
 export const DetailCard = styled.section`
-  width: 90%;
-  height: 80vh;
-  position: absolute;
-  z-index: 4;
   background: linear-gradient(180deg, #8782d0 35%, rgba(255, 177, 190, 1) 100%);
-  border-radius: 3rem;
+  border-radius: 1rem;
+  position: relative;
+  z-index: 3;
+  justify-items: center;
+  margin: 5rem 0;
 `;
 
-const DetailMain = styled.div`
+const CardHeaderContainer = styled.section`
   width: 100%;
-  height: 50%;
+  position: relative;
+  overflow: hidden;
+  section {
+    display: block;
+  }
+  height: 510px;
+  border-radius: 1rem 1rem 0 0;
+  object-fit: cover;
+  display: block;
+`;
+
+const HeaderContentWrapper = styled.div`
+  position: absolute;
+  z-index: 2;
+  color: ${(props) => props.theme.text};
+  top: 3rem;
   display: grid;
   grid-template-rows: 1fr;
   grid-template-columns: repeat(2, 1fr);
-  /* background: ${(props) => props.theme.card}; */
-  color: ${(props) => props.theme.text};
-  border-radius: 3rem 3rem 0 0;
+  width: 100%;
 `;
 
-const DetailLeft = styled.div`
-  align-self: center;
+const TodayWeatherContainer = styled.div`
   justify-self: center;
+  display: grid;
+  width: 100%;
+  grid-template-rows: 3fr 1fr;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  grid-gap: 2rem;
+`;
+const TempStateContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-flow: column;
+  text-align: center;
+`;
+
+const TemperatureText = styled.span`
+  font-size: 6rem;
+  letter-spacing: 0.75rem;
+`;
+
+const WeatherStateContainer = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const WeatherStateText = styled.span`
+  letter-spacing: 0.5rem;
+  font-size: 1.15rem;
+  text-transform: uppercase;
+  margin-left: 1rem;
+`;
+
+const HumWindContainer = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const HumContainer = styled.div`
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const HumText = styled.span`
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+  font-size: 0.8rem;
+  margin-bottom: 1rem;
+`;
+
+const HumValueText = styled.span`
+  font-size: 1.2rem;
+`;
+
+const HumWindSeparator = styled.div`
+  margin: 0 2rem;
+  width: 2px;
+  height: 2.8rem;
+  background-color: ${(props) => props.theme.text}; ;
+`;
+
+const WindContainer = styled.div`
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const WindText = styled.span`
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+  font-size: 0.8rem;
+  margin-bottom: 1rem;
+`;
+
+const WindValueText = styled.span`
+  font-size: 1.2rem;
+`;
+
+const CityNameContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  height: 100%;
-  span {
-    display: block;
-  }
-  img {
-    width: 100%;
-    height: 100%;
-  }
+  padding-bottom: 25%;
+`;
+
+const CityNameUnderline = styled.div`
+  background: 0 0;
+  border-radius: 5px;
+  height: 5px;
+  box-shadow: 0 3rem 0 0 ${(props) => props.theme.text};
+`;
+
+const CityNameText = styled.span`
+  text-transform: uppercase;
+  letter-spacing: 0.3rem;
+  font-size: 1.75rem;
+  margin-bottom: 2rem;
 `;
 
 const PictureContainer = styled.div`
-  width: 20vw;
-  height: 20vh;
-  padding: 2em;
-`;
-
-const DetailBottom = styled.div`
-  width: 100%;
-  height: 50%;
-  display: grid;
-  grid-template-rows: 1fr;
-  grid-template-columns: repeat(5, 1fr);
-  color: ${(props) => props.theme.text};
-  border-radius: 3rem 3rem 0 0;
-`;
-
-const SmallPictureContainer = styled.div`
-  width: 20%;
-  height: 20%;
+  width: 100px;
+  height: 100px;
+  padding: 1em;
   img {
     width: 100%;
-    height: 100%;
   }
 `;
 
+const BodyContentWrapper = styled.div`
+  display: grid;
+  grid-template-rows: 1fr;
+  justify-items: center;
+  justify-content: center;
+  align-content: start;
+  align-items: start;
+  box-sizing: border-box;
+  grid-column-gap: 1rem;
+  width: 100%;
+  padding: 2rem;
+  color: ${(props) => props.theme.text};
+`;
+
+const ForecastContainer = styled.div`
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+`;
+
+const SmallPictureContainer = styled.div`
+  img {
+    width: 4rem;
+    height: 4rem;
+  }
+`;
+
+const DayWeatherContainer = styled.div`
+  display: flex;
+  flex-flow: column;
+  margin: 2rem 1.5rem;
+  justify-content: center;
+  align-items: center;
+`;
+
 const WeatherDetail = ({ match }) => {
+  const history = useHistory();
   const { name, lat, long } = match.params;
   const { data } = WeatherDetailFunc(lat, long);
   const [img, setImg] = useState([]);
@@ -114,49 +233,77 @@ const WeatherDetail = ({ match }) => {
     }
   }, [data]);
 
+  const toHome = () => {
+    history.push('/');
+  };
+
   return (
     <Box>
       <GradientCircle />
-      <BackBtnStyled>
+      <BackBtnStyled onClick={toHome}>
         <BackBtn />
       </BackBtnStyled>
       <DetailCard>
-        <DetailMain>
-          <DetailLeft>
-            <div>
-              <span>{name && name}</span>
-              <PictureContainer>
-                {data && <img src={img} alt="" />}
-              </PictureContainer>
-            </div>
-          </DetailLeft>
-          <DetailLeft>
-            <div>
-              <span>기온 : {data && Math.round(data.current.temp)}°</span>
-              <span>
-                날씨 상태 : {data && data.current.weather[0].description}
-              </span>
-              <span>습도 : {data && data.current.humidity}%</span>
-              <span>풍속 : {data && data.current.wind_speed}m/sec</span>
-            </div>
-          </DetailLeft>
-        </DetailMain>
-        <DetailBottom>
-          {dailyData &&
-            dailyData.map((day) => {
-              return (
-                <div key={day.dt}>
-                  <p>{unixConverter(day.dt)}</p>
-                  <SmallPictureContainer>
-                    {data && (
-                      <img src={WeatherIconFunc(day.weather[0].main)} alt="" />
-                    )}
-                  </SmallPictureContainer>
-                  <p>{Math.round(day.temp.day)}°</p>
-                </div>
-              );
-            })}
-        </DetailBottom>
+        <CardHeaderContainer>
+          <HeaderContentWrapper>
+            <TodayWeatherContainer>
+              <TempStateContainer>
+                <TemperatureText>
+                  {data && Math.round(data.current.temp)}°
+                </TemperatureText>
+                <WeatherStateContainer>
+                  <WeatherStateText>
+                    {data && data.current.weather[0].description}
+                  </WeatherStateText>
+                  <PictureContainer>
+                    {data && <img src={img} alt="" />}
+                  </PictureContainer>
+                </WeatherStateContainer>
+              </TempStateContainer>
+              <HumWindContainer>
+                <HumContainer>
+                  <HumText>습도</HumText>
+                  <HumValueText>{data && data.current.humidity}%</HumValueText>
+                </HumContainer>
+                <HumWindSeparator></HumWindSeparator>
+                <WindContainer>
+                  <WindText>바람</WindText>
+                  <WindValueText>
+                    {data && data.current.wind_speed}m/sec
+                  </WindValueText>
+                </WindContainer>
+              </HumWindContainer>
+            </TodayWeatherContainer>
+            <CityNameContainer>
+              <CityNameUnderline>
+                <CityNameText>{name && name}</CityNameText>
+              </CityNameUnderline>
+            </CityNameContainer>
+          </HeaderContentWrapper>
+        </CardHeaderContainer>
+        <BodyContentWrapper>
+          <ForecastContainer>
+            {dailyData &&
+              dailyData.map((day) => {
+                return (
+                  <DayWeatherContainer>
+                    <DayWeatherContainer key={day.dt}>
+                      <span>{unixConverter(day.dt)}</span>
+                      <SmallPictureContainer>
+                        {data && (
+                          <img
+                            src={WeatherIconFunc(day.weather[0].main)}
+                            alt=""
+                          />
+                        )}
+                      </SmallPictureContainer>
+                      <span>{Math.round(day.temp.day)}°</span>
+                    </DayWeatherContainer>
+                  </DayWeatherContainer>
+                );
+              })}
+          </ForecastContainer>
+        </BodyContentWrapper>
       </DetailCard>
     </Box>
   );

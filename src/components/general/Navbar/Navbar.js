@@ -1,12 +1,11 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
 import styled from 'styled-components';
-import { useTheme } from '../../../hooks/useTheme';
 import ThemeSelector from './ThemeSelector';
 import Logo from '../../../assets/images/logo2.png';
 import { Icon } from '@iconify/react';
-import Sidebar from '../Sidebar/Sidebar';
+import { StyledLink } from '../../../pages/Home/Home';
 import { useLogout } from '../../../hooks/useLogout';
+import { useAuthContext } from '../../../hooks/useAuthContext';
 
 const NavbarStyled = styled.nav`
   position: absolute;
@@ -61,9 +60,8 @@ const NavbarLinkContainer = styled.div`
   align-items: center;
 `;
 
-const NavBarExtended = styled.div``;
-
-const NavbarLink = styled(Link)`
+const NavbarLink = styled(StyledLink)`
+  color: ${(props) => props.theme.text};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -75,24 +73,13 @@ const LogoutBtn = styled.div`
   justify-content: center;
   align-items: center;
   margin: 10px;
-`;
-
-const NavName = styled.h1`
-  font-weight: 500;
-`;
-
-const HamburgerIcon = styled(Icon)`
-  color: ${(props) => props.theme.text};
   &:hover {
     cursor: pointer;
   }
 `;
 
-const Navbar = (props) => {
-  // const { theme } = useTheme();
-  const [sidebar, setSidebar] = useState(false);
-
-  // const sidebarHandler = () => setSidebar(!sidebar);
+const Navbar = () => {
+  const { user } = useAuthContext();
 
   const { logout } = useLogout();
 
@@ -102,27 +89,18 @@ const Navbar = (props) => {
         <NavBarInner>
           <LeftSection>
             <NavbarLinkContainer>
-              {/*<HamburgerIcon*/}
-              {/*  icon="radix-icons:hamburger-menu"*/}
-              {/*  width="30"*/}
-              {/*  height="30"*/}
-              {/*  onClick={sidebarHandler}*/}
-              {/*/>*/}
               <NavbarLink to="/">
                 <img src={Logo} alt="logo" />
               </NavbarLink>
-              <NavbarLink to="/login">Login</NavbarLink>
-              <LogoutBtn onClick={logout}>Logout</LogoutBtn>
-              <NavbarLink to="/">Compare</NavbarLink>
+              {user && <LogoutBtn onClick={logout}>Logout</LogoutBtn>}
+              {!user && <NavbarLink to="/login">Login</NavbarLink>}
             </NavbarLinkContainer>
           </LeftSection>
           <RightSection>
             <ThemeSelector />
           </RightSection>
         </NavBarInner>
-        <NavBarExtended></NavBarExtended>
       </NavbarStyled>
-      {/*<Sidebar sidebar={sidebar} setSidebar={setSidebar} />*/}
     </>
   );
 };
