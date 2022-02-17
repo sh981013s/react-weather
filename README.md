@@ -13,7 +13,7 @@
 
 ![](.README_images/124e7ca5.png)
 
-* `Live Demo on Netlify:` <a href="https://kmumutsaalgo.netlify.app/" target="\_blank">https://kmumutsaalgo.netlify.app/</a>
+* `Live Demo on Netlify:` <a href="https://house-the-weather.netlify.app/" target="\_blank">https://house-the-weather.netlify.app/</a>
 
 ## 🎠 기능
 
