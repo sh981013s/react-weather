@@ -11,7 +11,7 @@
 
 ## 🖥 Demo
 
-![](.README_images/38ea797e.png)
+![](.README_images/124e7ca5.png)
 
 * `Live Demo on Netlify:` <a href="https://kmumutsaalgo.netlify.app/" target="\_blank">https://kmumutsaalgo.netlify.app/</a>
 
