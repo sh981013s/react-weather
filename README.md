@@ -1,70 +1,81 @@
-# Getting Started with Create React App
+# 🌃 House The Weather?
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 🙇‍♂️ contributors
 
-## Available Scripts
+- [👨🏻 이승환](https://github.com/sh981013s)
+- [👧🏻 문유선](https://github.com/moonnew)
 
-In the project directory, you can run:
+## 📄 Description
 
-### `npm start`
+최대한 간편하게 깔끔한 UI 를 통해 오늘의 날씨 확인 및 날씨 예측을 위한 SPA 입니다.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 🖥 Demo
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+![](.README_images/38ea797e.png)
 
-### `npm test`
+* `Live Demo on Netlify:` <a href="https://kmumutsaalgo.netlify.app/" target="\_blank">https://kmumutsaalgo.netlify.app/</a>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 🎠 기능
 
-### `npm run build`
+#### 👩‍🌾 User
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- [x] **회원 가입**
+- [x] **로그인**
+- [x] **로그아웃**
+- [x] **도시 검색**
+- [x] **검색한 도시로 추가**
+- [x] **현재위치 기반 도시로 추가**
+- [x] **도시 삭제**
+- [x] **도시 디테일 확인**
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+#### 💻 System
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- [x] **Suspense & lazy 사용하여 로딩 화면 구현**
+- [x] **실시간 데이터베이스로 인한 즉시 확인**
 
-### `npm run eject`
+## 📀 Setup Locally
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+have to create dotenv file at root dir
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```dotenv
+// firebase
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+REACT_APP_API_KEY = ""
+REACT_APP_AUTH_DOMAIN = ""
+REACT_APP_PROJECT_ID = ""
+REACT_APP_STORAGE_BUCKET = ""
+REACT_APP_MESSAGING_SENDER_ID = ""
+REACT_APP_APP_ID = ""
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+// openWeather
+REACT_APP_OPENWEATHER_KEY = ""
 
-## Learn More
+// googleMap
+REACT_APP_GEO_APIKEY = ""
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+git clone https://github.com/sh981013s/react-weather.git
+cd react-weather
+npm install
+npm run start
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 📚 Used packages
 
-### Code Splitting
+- "axios": "^0.24.0"
+- "firebase": "^9.6.3"
+- "framer-motion": "^5.6.0"
+- "react": "^17.0.2"
+- "react-dark-mode-toggle": "^0.2.0"
+- "react-dom": "^17.0.2"
+- "react-places-autocomplete": "^7.3.0"
+- "react-router-dom": "^5.3.0"
+- "react-scripts": "5.0.0"
+- "react-spinners": "^0.11.0"
+- "styled-components": "^5.3.3"
+- "styled-reset": "^4.3.4"
+- "web-vitals": "^2.1.3
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
