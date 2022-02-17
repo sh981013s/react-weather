@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
-import { useAuthContext } from './useAuthContext';
+import { useAuthContext } from '../hooks/useAuthContext';
 import { db } from '../firebase/firebaseConfig';
 import { collection, addDoc, query, where, getDocs } from 'firebase/firestore';
 

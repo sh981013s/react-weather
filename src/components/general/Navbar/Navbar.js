@@ -1,7 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
 import styled from 'styled-components';
-import { useTheme } from '../../../hooks/useTheme';
 import ThemeSelector from './ThemeSelector';
 import Logo from '../../../assets/images/logo2.png';
 import { Icon } from '@iconify/react';
@@ -62,8 +60,6 @@ const NavbarLinkContainer = styled.div`
   align-items: center;
 `;
 
-const NavBarExtended = styled.div``;
-
 const NavbarLink = styled(StyledLink)`
   color: ${(props) => props.theme.text};
   display: flex;
@@ -77,23 +73,13 @@ const LogoutBtn = styled.div`
   justify-content: center;
   align-items: center;
   margin: 10px;
-`;
-
-const NavName = styled.h1`
-  font-weight: 500;
-`;
-
-const HamburgerIcon = styled(Icon)`
-  color: ${(props) => props.theme.text};
   &:hover {
     cursor: pointer;
   }
 `;
 
-const Navbar = (props) => {
+const Navbar = () => {
   const { user } = useAuthContext();
-
-  console.log(user, 'user');
 
   const { logout } = useLogout();
 
@@ -108,17 +94,13 @@ const Navbar = (props) => {
               </NavbarLink>
               {user && <LogoutBtn onClick={logout}>Logout</LogoutBtn>}
               {!user && <NavbarLink to="/login">Login</NavbarLink>}
-
-              <NavbarLink to="/compare">Compare</NavbarLink>
             </NavbarLinkContainer>
           </LeftSection>
           <RightSection>
             <ThemeSelector />
           </RightSection>
         </NavBarInner>
-        <NavBarExtended></NavBarExtended>
       </NavbarStyled>
-      {/*<Sidebar sidebar={sidebar} setSidebar={setSidebar} />*/}
     </>
   );
 };
