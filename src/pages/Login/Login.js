@@ -6,8 +6,8 @@ import { useLogin } from '../../hooks/useLogin';
 const Box = styled.div`
   position: relative;
   width: 100%;
-  height: 92.7vh;
-  margin-top: 7.3vh;
+  height: 95vh;
+  margin-top: 5vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -67,6 +67,7 @@ const LoginBtn = styled.div`
   border: none;
   color: #fff;
   font-size: 1.1rem;
+  text-align: center;
   cursor: pointer;
   margin-top: 1.5rem;
   width: 50%;

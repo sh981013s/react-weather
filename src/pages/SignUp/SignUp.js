@@ -7,8 +7,8 @@ import { useSignup } from '../../hooks/useSignup';
 const Box = styled.div`
   position: relative;
   width: 100%;
-  height: 92.7vh;
-  margin-top: 7.3vh;
+  height: 95vh;
+  margin-top: 5vh;
   display: flex;
   justify-content: center;
   align-items: center;
